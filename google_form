@@ -1,0 +1,619 @@
+# Google Form Structure Specification
+# Tours Planning System Integration
+
+## Project Overview
+This document defines the complete Google Form structure for the Tours Planning Project, designed to collect comprehensive trip planning information that automatically integrates with a Google Sheets database.
+
+## Form Configuration
+
+### Form Name
+"Trip Planning & Booking Form"
+
+### Description
+"Comprehensive form for planning and booking multi-day trips to various locations (Skardu, Hunza, Deosai National Park, etc.). This form collects all necessary information for trip organization, booking, and management."
+
+### Access Control
+- Public access (anyone with link can fill)
+- Age restriction: 18+ (for trip participation)
+- Email verification required
+- Auto-save enabled
+- Submit button: "Save and Continue" (multi-step)
+
+## Form Section 1: Trip Basic Information
+
+### Question 1: Trip Location
+**Type**: Multiple Choice (with text option)
+**Required**: Yes
+**Options**:
+- Skardu
+- Hunza
+- Deosai National Park
+- Northern Areas (other)
+- Custom: (text input)
+
+### Question 2: Trip Name/Code
+**Type**: Short answer
+**Required**: Yes
+**Placeholder**: "e.g., Summer2024, MTK2Climb, HunzaAdventure"
+**Validation**: Alphanumeric only, 3-20 characters
+
+### Question 3: Trip Dates
+**Type**: Date range
+**Required**: Yes
+**Settings**:
+- Start date: required
+- End date: required
+- Minimum date: tomorrow
+- Maximum date: 12 months ahead
+- Validation: End date must be after start date
+
+### Question 4: Number of Participants
+**Type**: Multiple question group
+  **Q4a**: Adults (18-64 years)
+  **Type**: Number
+  **Required**: Yes
+  **Validation**: 1-100 range
+  
+  **Q4b**: Children (5-17 years)
+  **Type**: Number  
+  **Required**: Yes
+  **Validation**: 0-20 range
+  
+  **Q4c**: Infants (0-4 years)
+  **Type**: Number
+  **Required**: Yes
+  **Validation**: 0-10 range
+  
+  **Q4d**: Senior Citizens (65+ years)
+  **Type**: Number
+  **Required**: Yes
+  **Validation**: 0-20 range
+
+### Question 5: Total Guests Calculation
+**Type**: Calculated field (auto-populated)
+**Formula**: Adults + Children + Infants + Senior Citizens
+**Description**: Automatically calculated - read-only display
+
+## Form Section 2: Trip Planning & Booking
+
+### Question 6: Travel Planner Details
+**Type**: Multiple question group
+  **Q6a**: Planner Name
+  **Type**: Short answer
+  **Required**: Yes
+  
+  **Q6b**: Contact Phone
+  **Type**: Phone number
+  **Required**: Yes
+  **Validation**: 10-15 digits, international format accepted
+  
+  **Q6c**: Contact Email
+  **Type**: Email
+  **Required**: Yes
+  **Validation**: Valid email format
+  
+  **Q6d**: Emergency Contact Name
+  **Type**: Short answer
+  **Required**: Yes
+  
+  **Q6e**: Emergency Contact Phone
+  **Type**: Phone number
+  **Required**: Yes
+  
+  **Q6f**: Emergency Contact Email
+  **Type**: Email
+  **Required**: Yes
+
+### Question 7: Transportation Requirements
+**Type**: Multiple question group
+  **Q7a**: Vehicle Type
+  **Type**: Multiple choice
+  **Required**: Yes
+  **Options**:
+  - Car
+  - Bus
+  **Q7b**: Seating Capacity Required
+  **Type**: Number
+  **Required**: Yes
+  **Validation**: Must be >= Total Guests
+  **Show**: Only if Car selected
+  
+  **Q7c**: Vehicle Company/Model
+  **Type**: Short answer
+  **Required**: Yes
+  **Show**: Only if Car/Bus selected
+  
+  **Q7d**: Driver Information
+  **Type**: Multiple question group (conditional)
+    **Q7d(i)**: Driver Name
+    **Type**: Short answer
+    **Required**: Yes
+    
+    **Q7d(ii)**: Driver Phone
+    **Type**: Phone number
+    **Required**: Yes
+
+### Question 8: Accommodation Details
+**Type**: Multiple question group
+  **Q8a**: Hotel/AC Name
+  **Type**: Short answer
+  **Required**: Yes
+  
+  **Q8b**: Room Type
+  **Type**: Multiple choice
+  **Required**: Yes
+  **Options**:
+  - Single
+  - Double
+  - Triple
+  - Suite
+  
+  **Q8c**: Number of Rooms
+  **Type**: Number
+  **Required**: Yes
+  **Validation**: Must accommodate all guests
+  
+  **Q8d**: Booking Date
+  **Type**: Date
+  **Required**: Yes
+  
+  **Q8e**: Check-in Date
+  **Type**: Date
+  **Required**: Yes
+  **Show**: Only if Booking Date selected
+  
+  **Q8f**: Check-out Date
+  **Type**: Date
+  **Required**: Yes
+  **Show**: Only if Check-in Date selected
+  
+  **Q8g**: Boarding Type
+  **Type**: Checkboxes
+  **Options**:
+  - [ ] Half Board
+  **Q8h**: Full Board
+  **Type**: Checkboxes
+  **Options**:
+  **Q8i**: Room Rate
+  **Type**: Currency
+  **Required**: Yes
+
+### Question 9: Special Requests & Requirements
+**Type**: Long answer
+**Required**: No
+**Placeholder**: "Any special requirements, dietary restrictions, accessibility needs, etc."
+**Character limit**: 1000
+
+## Form Section 3: Excursions & Activities
+
+### Question 10: Location-Specific Activities
+**Type**: Multiple question group (conditional based on Trip Location)
+
+#### For Skardu:
+**Q10a**: Skardu Sightseeing
+**Type**: Checkboxes
+**Options**:
+- [ ] Barana Fort
+- [ ] Shigar Fort
+- [ ] Khaplu Palace
+- [ ] Rizini
+- [ ] other sightseeing
+**Q10b**: Sightseeing Cost
+**Type**: Currency
+**Show**: Only if any activity selected
+
+#### For Hunza:
+**Q10c**: Hunza Sightseeing
+**Type**: Checkboxes
+**Options**:
+- [ ] Altit Fort
+- [ ] Baltit Fort
+- [ ] Eagle Hunting
+- [ ] White Water Rafting
+- [ ] other activities
+**Q10d**: Sightseeing Cost
+**Type**: Currency
+**Show**: Only if any activity selected
+
+#### For Deosai:
+**Q10e**: Deosai Activities
+**Type**: Multiple choice
+**Options**:
+- Mountain Climbing
+- Rock Climbing
+- Photography
+- Wildlife Watching
+- Special Event
+**Q10f**: Activity Description
+**Type**: Long answer
+**Show**: Only if "Other" selected
+**Q10g**: Activity Cost
+**Type**: Currency
+**Show**: Only if activity selected
+
+### Question 11: Additional Adventures
+**Type**: Multiple question group
+**Q11a**: Camel Safari
+**Type**: Checkboxes
+**Options**:
+- [ ] Full Day Safari
+- [ ] Half Day Safari
+- [ ] Desert Camping
+**Q11b**: Camel Safari Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+**Q11c**: M K2 Climbing
+**Type**: Checkboxes
+**Options**:
+- [ ] K2 Expedition
+- [ ] K2 Base Camp
+- [ ] K2 Lakes
+**Q11d**: K2 Climb Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+**Q11e**: White Water Rafting
+**Type**: Checkboxes
+**Options**:
+- [ ] River Rafting
+- [ ] Kayaking
+- [ ] Swimming
+**Q11f**: Rafting Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+## Form Section 4: Equipment & Rental
+
+### Question 12: Equipment Rental Needs
+**Type**: Multiple question group
+**Q12a**: Tents Rental
+**Type**: Checkboxes
+**Options**:
+- [ ] 10-person Tents
+- [ ] 20-person Tents
+- [ ] Sleeping Bags
+- [ ] Chairs
+**Q12b**: Tent Rental Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+**Q12c**: Beds Rental
+**Type**: Checkboxes
+**Options**:
+- [ ] Mattresses
+- [ ] Bedding
+- [ ] Pillows
+**Q12d**: Bed Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+**Q12e**: Cookware Rental
+**Type**: Checkboxes
+**Options**:
+- [ ] Pots & Pans
+- [ ] Utensils
+- [ ] Gas Stove
+- [ ] Lanterns
+**Q12f**: Cookware Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+**Q12g**: Generator Rental
+**Type**: Checkboxes
+**Options**:
+- [ ] Generator
+- [ ] Fuel
+- [ ] Surge Protector
+**Q12h**: Generator Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+**Q12i**: First Aid Kit
+**Type**: Checkboxes
+**Options**:
+- [ ] Complete Kit
+- [ ] Basic Kit
+- [ ] Medications
+**Q12j**: First Aid Cost
+**Type**: Currency
+**Show**: Only if any selected
+
+## Form Section 5: Travel Insurance
+
+### Question 13: Travel Insurance
+**Type**: Multiple choice
+**Options**:
+- [ ] Required (must have insurance)
+- [ ] Optional (will buy separately)
+- [ ] Not needed
+
+**Conditional Questions** (shown only if "Required" selected):
+  **Q13a**: Insurance Provider
+  **Type**: Short answer
+  **Required**: Yes
+  
+  **Q13b**: Policy Number
+  **Type**: Short answer
+  **Required**: Yes
+  
+  **Q13c**: Coverage Amount
+  **Type**: Currency
+  **Required**: Yes
+  
+  **Q13d**: Insurance Contact
+  **Type**: Short answer
+  **Required**: Yes
+
+## Form Section 6: Travel Documents
+
+### Question 14: Travel Documents
+**Type**: Multiple question group
+**Q14a**: Passport Required
+**Type**: Checkboxes
+**Options**:
+- [ ] Yes
+- [ ] No
+
+**Conditional Questions** (shown only if "Yes" selected):
+  **Q14b**: Passport Number
+  **Type**: Short answer
+  **Required**: Yes
+  **Validation**: 6-9 characters, alphanumeric
+  
+  **Q14c**: Visa Required
+  **Type**: Checkboxes
+  **Options**:
+  - [ ] Yes
+  - [ ] No
+  
+  **Q14d**: Visa Type
+  **Type**: Multiple choice
+  **Required**: Show only if "Yes"
+  **Options**:
+  - Tourist
+  - Business
+  - Other
+  
+  **Q14e**: Visa Cost
+  **Type**: Currency
+  **Show**: Only if "Yes"
+  
+  **Q14f**: Visa Issue Date
+  **Type**: Date
+  **Show**: Only if "Yes"
+  
+  **Q14g**: Visa Expiry Date
+  **Type**: Date
+  **Required**: Show only if "Yes"
+
+### Question 15: Additional Documents
+**Type**: Multiple question group
+**Q15a**: Travel Insurance Policy
+**Type**: Short answer
+**Show**: Only if insurance required
+
+**Q15b**: Emergency Contact Details
+**Type**: Multiple question group
+  **Q15b(i)**: Contact Name
+  **Type**: Short answer
+  **Required**: Yes
+  
+  **Q15b(ii)**: Contact Phone
+  **Type**: Phone number
+  **Required**: Yes
+  
+  **Q15b(iii)**: Contact Email
+  **Type**: Email
+  **Required**: Yes
+
+## Form Section 7: Medical & Safety
+
+### Question 16: Medical Information
+**Type**: Multiple question group
+**Q16a**: Medical Conditions
+**Type**: Checkboxes
+**Options**:
+- [ ] None
+- [ ] Diabetes
+- [ ] Heart Conditions
+- [ ] Respiratory Issues
+- [ ] Allergies
+- [ ] Other
+
+**Q16b**: Medical Details
+**Type**: Long answer
+**Placeholder**: "Please specify any medical conditions or allergies"
+**Show**: Only if "Other" selected
+
+**Q16c**: Medications
+**Type**: Long answer
+**Placeholder**: "List all current medications"
+**Show**: Only if any condition selected
+
+**Q16d**: Preferred Hospital
+**Type**: Short answer
+**Required**: Yes
+
+**Q16e**: Blood Type
+**Type**: Multiple choice
+**Options**:
+- A+
+- A-
+- B+
+- B-
+- O+
+- O-
+- AB+
+- AB-
+
+### Question 17: Emergency Kit
+**Type**: Multiple question group
+**Q17a**: Emergency Kit Required
+**Type**: Checkboxes
+**Options**:
+- [ ] First Aid Kit
+- [ ] Medications
+- [ ] Medical Devices
+- [ ] Communication Device
+- [ ] Navigation Equipment
+- [ ] Weather Protection
+
+## Form Section 8: Financial Details
+
+### Question 18: Payment Information
+**Type**: Multiple question group
+**Q18a**: Initial Deposit
+**Type**: Currency
+**Required**: Yes
+**Validation**: >0
+
+**Q18b**: Payment Method
+**Type**: Multiple choice
+**Required**: Yes
+**Options**:
+- Cash
+- Credit/Debit Card
+- Bank Transfer
+- Online Payment
+
+**Q18c**: Payment Status
+**Type**: Calculated field (read-only)
+**Formula**: "Pending" if Initial Deposit >0, "Paid" otherwise
+
+### Question 19: Budget Breakdown
+**Type**: Multiple question group
+**Q19a**: Accommodation Budget
+**Type**: Currency
+**Required**: Yes
+
+**Q19b**: Transportation Budget
+**Type**: Currency
+**Required**: Yes
+
+**Q19c**: Activities Budget
+**Type**: Currency
+**Required**: Yes
+
+**Q19d**: Equipment Budget
+**Type**: Currency
+**Required**: Yes
+
+**Q19e**: Insurance Budget
+**Type**: Currency
+
+**Q19f**: Miscellaneous Budget
+**Type**: Currency
+
+**Q19g**: Total Trip Budget
+**Type**: Calculated field
+**Formula**: Accommodation + Transportation + Activities + Equipment + Insurance + Miscellaneous
+
+## Form Section 9: System Information
+
+### Question 20: Submission Details
+**Type**: Multiple question group (auto-populated)
+
+**Q20a**: Submission Date/Time
+**Type**: Date + Time
+**Auto-populated**: Yes
+**Read-only**: Yes
+
+**Q20b**: Submission IP Address
+**Type**: Short answer
+**Auto-populated**: Yes
+**Read-only**: Yes
+
+**Q20c**: User Email (Verified)
+**Type**: Email
+**Auto-populated**: Yes
+**Read-only**: Yes
+
+## Advanced Form Settings
+
+### Validation Rules
+1. **Date Validation**: End date must be after start date
+2. **Capacity Validation**: Room/Vehicle capacity must accommodate total guests
+3. **Email Validation**: Must be verified Google Workspace/email
+4. **Phone Validation**: Must be valid phone format
+5. **Amount Validation**: All monetary amounts must be positive numbers
+
+### Conditional Logic Examples
+1. If Trip Location = "Skardu" → Show Skardu-specific activities
+2. If Visa Required = "Yes" → Show visa-related questions
+3. If Insurance Required = "Yes" → Show insurance details
+4. If Emergency Kit Required → Show medical information
+5. If Vehicle Type = "Car" → Show seating capacity based on guest count
+
+### Response Processing
+1. **Duplicate Detection**: Check for existing bookings with same name/date/location
+2. **Auto-Categorization**: Automatically categorize responses by location, trip type
+3. **Calculations**: Auto-calculate total costs, budgets, requirements
+4. **Notifications**: Send confirmation emails to submitter and emergency contacts
+5. **Status Updates**: Update trip status based on form completion
+
+## Integration Specifications
+
+### Google Sheets Integration
+- **Primary Sheet**: "Trip Database"
+- **Form Range**: A2:Z1000 (expandable)
+- **Auto-population**: Real-time sync
+- **Data Validation**: Applied to all numeric/date fields
+- **Dropdowns**: Linked to predefined locations and options
+
+### API Integration
+- **REST API**: Available for external systems
+- **Export Options**: CSV, Excel, Google Sheets format
+- **Webhooks**: Can trigger other workflows
+- **Data Validation**: Server-side validation before storage
+
+### Access Control
+- **Row Security**: Different users see different rows based on permissions
+- **Column Security**: Hide sensitive financial info from certain users
+- **Edit Controls**: Define who can edit what fields
+- **Audit Trail**: Track all changes with user timestamps
+
+### Automation Rules
+1. **Trigger**: New form submission
+2. **Actions**:
+   - Create calendar event
+   - Send confirmation emails
+   - Update trip dashboard
+   - Calculate requirements (rooms, vehicles, equipment)
+   - Generate budget breakdown
+
+## Testing & Validation
+
+### Required Tests
+1. **Form Functionality**: All sections and conditional logic
+2. **Data Integrity**: Validation rules and calculations
+3. **Integration Tests**: Form to sheet sync
+4. **User Experience**: Mobile responsiveness, accessibility
+5. **Security Tests**: Data validation, duplicate prevention
+
+### Test Scenarios
+1. Complete trip planning flow
+2. Single traveler vs group bookings
+3. Different location variations
+4. Emergency scenario handling
+5. Budget vs actual cost comparison
+
+## Documentation & Training
+
+### User Guide
+1. **Quick Start Guide**: Complete trip planning in 5 minutes
+2. **FAQ Section**: Common questions and answers
+3. **Video Tutorials**: Form completion walkthrough
+4. **Support Contact**: Direct line for form issues
+
+### Admin Guide
+1. **Form Management**: Edit, test, deploy forms
+2. **Analytics**: View, analyze form responses
+3. **Data Management**: Export, backup, clean data
+4. **User Management**: Control form access and permissions
+
+This comprehensive Google Form structure provides a complete solution for managing trip planning with full integration to Google Sheets, automated calculations, and robust data management capabilities.
+
+Created: $(date)
+Last Updated: $(date)
+Status: Ready for Implementation

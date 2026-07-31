@@ -1,0 +1,39 @@
+Trip Planning & Booking Form
+
+Section: Trip details
+1. Which destination are you most interested in? (multiple choice)
+Options:
+- Kuchura Valley
+- Cigar Valley
+- Kharmung Valley
+- Khaplu Valley
+- Chunda Valley
+- Deosai Plains
+- Masrur Rock
+- Skardu City
+- Tormik Meadows
+- Other
+- Flexible / undecided
+
+2. Trip name or reference (optional)
+3. Tentative travel start date
+4. Tentative travel end date
+5. How many adults, children, and infants are travelling?
+6. Tentative itinerary / places you want to visit (optional)
+
+Section: Traveler contact
+7. Traveler full name
+8. Contact phone
+9. Contact email
+10. Emergency contact name
+11. Emergency contact phone
+12. Pickup city / location (optional)
+13. Accommodation preference (optional)
+
+Section: Budget and notes
+14. Activities (optional)
+15. Equipment (optional)
+16. Estimated transport cost (optional)
+17. Initial deposit (optional)
+18. Preferred payment method (optional)
+19. Special requests or notes

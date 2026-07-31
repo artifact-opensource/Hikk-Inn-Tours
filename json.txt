@@ -1,0 +1,2 @@
+/*O_o*/
+google.visualization.Query.setResponse({"version":"0.6","reqId":"0","status":"error","errors":[{"reason":"access_denied","message":"ACCESS_DENIED","detailed_message":"This spreadsheet is not publicly viewable and requires an OAuth credential.  For more information, see https://support.google.com/docs/?p=gviz_tq_auth"}]});

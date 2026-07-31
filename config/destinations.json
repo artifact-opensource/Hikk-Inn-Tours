@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "destinations": [
+    {
+      "id": "kuchura_valley",
+      "name": "Kuchura Valley",
+      "sites": ["Sangria La", "Upper Kuchura", "Sok Valley"],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down"],
+      "costs": {"v4_corolla_sedan": 12000, "v4_premio_up": 12000, "v4_premio_down": 12000},
+      "notes": "Corolla/Premio suitable"
+    },
+    {
+      "id": "cigar_valley",
+      "name": "Cigar Valley",
+      "sites": ["Fort", "Blind Lake", "Cold Desert"],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down"],
+      "costs": {"v4_corolla_sedan": 10000, "v4_premio_up": 10000, "v4_premio_down": 10000},
+      "notes": "Corolla/Premio recommended"
+    },
+    {
+      "id": "kharmung_valley",
+      "name": "Kharmung Valley",
+      "sites": ["Munthoka Waterfall", "Khamosh Waterfall", "Chocolate Rock"],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down"],
+      "costs": {"v4_corolla_sedan": 15000, "v4_premio_up": 15000, "v4_premio_down": 15000}
+    },
+    {
+      "id": "khaplu_valley",
+      "name": "Khaplu Valley",
+      "sites": ["Fort", "Chakhchan Mosque", "Thoksikhar", "Saling Fish Farm"],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down"],
+      "costs": {"v4_corolla_sedan": 17000, "v4_premio_up": 17000, "v4_premio_down": 17000}
+    },
+    {
+      "id": "chunda_valley",
+      "name": "Chunda Valley",
+      "sites": ["Viewpoint", "Airport Viewpoint"],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down"],
+      "costs": {"v4_corolla_sedan": 9000, "v4_premio_up": 9000, "v4_premio_down": 9000}
+    },
+    {
+      "id": "deosai_plains",
+      "name": "Deosai Plains",
+      "sites": ["Ali Malik Top", "Chota Pani", "Bara Pani", "Kala Pani", "Sheosar Lake", "Nanga Parbat Viewpoint", "Satpara Lake"],
+      "allowed_vehicle_ids": ["v8_prado_up", "v8_prado_down", "v8_prado_5door"],
+      "costs": {"v8_prado_up": 30000, "v8_prado_down": 26000, "v8_prado_5door": 25000}
+    },
+    {
+      "id": "masrur_rock",
+      "name": "Masrur Rock",
+      "sites": [],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down", "v8_prado_up", "v8_prado_down", "v8_prado_5door"],
+      "costs": {"v4_corolla_sedan": 9000, "v4_premio_up": 9000, "v4_premio_down": 9000, "v8_prado_up": 12000, "v8_prado_down": 12000, "v8_prado_5door": 12000}
+    },
+    {
+      "id": "skardu_city",
+      "name": "Skardu City",
+      "sites": ["Katpana Desert", "Kharpocho Fort", "Organic Village", "Chumik Bridge"],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down", "v8_prado_up", "v8_prado_down", "v8_prado_5door"],
+      "costs": {},
+      "notes": "TBD pricing"
+    },
+    {
+      "id": "tormik_meadows",
+      "name": "Tormik Meadows",
+      "sites": [],
+      "allowed_vehicle_ids": ["v4_corolla_sedan", "v4_premio_up", "v4_premio_down", "v8_prado_up", "v8_prado_down", "v8_prado_5door"],
+      "costs": {},
+      "notes": "TBD pricing"
+    }
+  ]
+}

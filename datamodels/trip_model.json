@@ -1,0 +1,199 @@
+{
+  "name": "Trip Model",
+  "version": "1.0",
+  "description": "Core model for managing trip planning data",
+  "fields": [
+    {
+      "name": "trip_id",
+      "type": "string",
+      "required": true,
+      "description": "Unique identifier for the trip"
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "required": true,
+      "description": "Trip destination (Skardu, Hunza, Deosai, Other)"
+    },
+    {
+      "name": "total_guests",
+      "type": "integer",
+      "required": true,
+      "description": "Total number of participants"
+    },
+    {
+      "name": "adults",
+      "type": "integer",
+      "required": false,
+      "description": "Number of adults (18-64 years)"
+    },
+    {
+      "name": "children",
+      "type": "integer",
+      "required": false,
+      "description": "Number of children (5-17 years)"
+    },
+    {
+      "name": "infants",
+      "type": "integer",
+      "required": false,
+      "description": "Number of infants (0-4 years)"
+    },
+    {
+      "name": "senior_citizens",
+      "type": "integer",
+      "required": false,
+      "description": "Number of senior citizens (65+ years)"
+    },
+    {
+      "name": "booking_date",
+      "type": "date",
+      "required": true,
+      "description": "Date when trip is booked"
+    },
+    {
+      "name": "travel_dates",
+      "type": "date_range",
+      "required": true,
+      "description": "Start and end dates of travel"
+    },
+    {
+      "name": "vehicle_type",
+      "type": "string",
+      "required": true,
+      "description": "Type of vehicle (Car, Bus)"
+    },
+    {
+      "name": "seating_capacity",
+      "type": "integer",
+      "required": true,
+      "description": "Number of seats available"
+    },
+    {
+      "name": "hotel_name",
+      "type": "string",
+      "required": true,
+      "description": "Name of accommodation"
+    },
+    {
+      "name": "room_type",
+      "type": "string",
+      "required": true,
+      "description": "Type of room (Single, Double, Triple, Suite)"
+    },
+    {
+      "name": "room_count",
+      "type": "integer",
+      "required": true,
+      "description": "Number of rooms"
+    },
+    {
+      "name": "room_rate",
+      "type": "decimal",
+      "required": true,
+      "description": "Rate per room"
+    },
+    {
+      "name": "transport_cost",
+      "type": "decimal",
+      "required": true,
+      "description": "Total transportation cost"
+    },
+    {
+      "name": "total_trip_cost",
+      "type": "decimal",
+      "required": true,
+      "description": "Total cost of the entire trip"
+    },
+    {
+      "name": "initial_deposit",
+      "type": "decimal",
+      "required": true,
+      "description": "Initial amount paid"
+    },
+    {
+      "name": "remaining_balance",
+      "type": "decimal",
+      "required": false,
+      "description": "Remaining amount to be paid"
+    },
+    {
+      "name": "payment_status",
+      "type": "string",
+      "required": false,
+      "description": "Status (Paid, Partial, Pending)"
+    },
+    {
+      "name": "trip_status",
+      "type": "string",
+      "required": false,
+      "description": "Status (Confirmed, Pending, Cancelled, Completed)"
+    },
+    {
+      "name": "emergency_contact",
+      "type": "string",
+      "required": true,
+      "description": "Emergency contact name"
+    },
+    {
+      "name": "emergency_phone",
+      "type": "string",
+      "required": true,
+      "description": "Emergency contact phone"
+    },
+    {
+      "name": "contact_email",
+      "type": "string",
+      "required": true,
+      "description": "Primary contact email"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "capacity_check",
+      "description": "Rooms must accommodate all guests"
+    },
+    {
+      "type": "vehicle_capacity",
+      "description": "Vehicle capacity >= total guests"
+    },
+    {
+      "type": "date_order",
+      "description": "Check-out date > check-in date"
+    },
+    {
+      "type": "payment_validation",
+      "description": "Payment amounts must be valid"
+    }
+  ],
+  "calculations": [
+    {
+      "name": "total_guests",
+      "formula": "adults + children + infants + senior_citizens"
+    },
+    {
+      "name": "rooms_needed",
+      "formula": "CEILING(total_guests / 10, 0)"
+    },
+    {
+      "name": "vehicles_needed",
+      "formula": "CEILING(total_guests / seating_capacity, 0)"
+    },
+    {
+      "name": "remaining_balance",
+      "formula": "total_trip_cost - initial_deposit"
+    },
+    {
+      "name": "payment_percentage",
+      "formula": "IF(initial_deposit > 0, initial_deposit / total_trip_cost * 100, 0)"
+    },
+    {
+      "name": "total_activities_cost",
+      "formula": "skardu_sightseeing_cost + hunza_sightseeing_cost + deosai_activities_cost"
+    },
+    {
+      "name": "emergency_fund",
+      "formula": "IF(emergency_level = 'High', total_guests * 500, IF(emergency_level = 'Medium', total_guests * 300, total_guests * 100))"
+    }
+  ]
+}

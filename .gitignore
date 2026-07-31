@@ -1,0 +1,7 @@
+credentials.json
+config/token.json
+.env
+*.log
+__pycache__/
+.pytest_cache/
+.hermes-tmp*
