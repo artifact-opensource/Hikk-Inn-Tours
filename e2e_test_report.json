@@ -1,0 +1,1091 @@
+{
+  "test_run": "end_to_end_testing",
+  "total_travellers": 12,
+  "passed": 12,
+  "failed": 0,
+  "discrepancies": [],
+  "all_warnings": [
+    "  DEMO-001: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-002: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-003: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-004: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-005: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-006: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-007: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-008: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-009: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-010: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-011: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']",
+    "  DEMO-012: Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+  ],
+  "detailed_results": [
+    {
+      "id": "DEMO-001",
+      "scenario": "Solo adventurer \u2014 Kuchura Valley",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 1 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=1"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-896EA38D"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: h, i, k, i, n, g, ,,  , c, a, m, p, i, n, g, ,,  , p, h, o, t, o, g, r, a, p, h, y"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Cash"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 2,200"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 2,200"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 300"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-002",
+      "scenario": "Couple \u2014 Cigar Valley",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 2 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=2"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-47DFF1DC"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: s, t, a, r, g, a, z, i, n, g, ,,  , p, h, o, t, o, g, r, a, p, h, y"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: B, e, d, s, ,,  , C, o, o, k, w, a, r, e, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Bank Transfer"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 1,000"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 1,000"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 600"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-003",
+      "scenario": "Family with children \u2014 Kharmung Valley",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 5 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=5"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006), V4 - Premio down model (2004-2007)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-8BB8FE5F"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: h, i, k, i, n, g, ,,  , s, i, g, h, t, s, e, e, i, n, g, ,,  , p, i, c, n, i, c"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , B, e, d, s, ,,  , C, o, o, k, w, a, r, e, ,,  , G, e, n, e, r, a, t, o, r, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Credit Card"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 4,500"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 4,500"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 1,500"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-004",
+      "scenario": "Large family with seniors \u2014 Khaplu Valley",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 6 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=6"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006), V4 - Premio down model (2004-2007)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-6ECA89C0"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: s, i, g, h, t, s, e, e, i, n, g, ,,  , c, u, l, t, u, r, a, l, _, t, o, u, r, ,,  , f, i, s, h, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , B, e, d, s, ,,  , C, o, o, k, w, a, r, e, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Bank Transfer"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 3,000"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 3,000"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 1,800"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-005",
+      "scenario": "Small group \u2014 Chunda Valley",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 4 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=4"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-C1E5E189"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: p, h, o, t, o, g, r, a, p, h, y, ,,  , h, i, k, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Cash"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 2,200"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 2,200"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 1,200"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-006",
+      "scenario": "Deosai Plains expedition \u2014 V8 Prado required",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 8 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=8"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006), V4 - Premio down model (2004-2007)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-121CC1BD"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Overbooked"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: h, i, k, i, n, g, ,,  , t, r, e, k, k, i, n, g, ,,  , p, h, o, t, o, g, r, a, p, h, y, ,,  , w, i, l, d, l, i, f, e, _, s, p, o, t, t, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , B, e, d, s, ,,  , C, o, o, k, w, a, r, e, ,,  , G, e, n, e, r, a, t, o, r, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Credit Card"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 4,500"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 4,500"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 2,400"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-007",
+      "scenario": "Masrur Rock \u2014 mixed vehicle eligible",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 4 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=4"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-A5E36843"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: s, i, g, h, t, s, e, e, i, n, g, ,,  , h, i, k, i, n, g, ,,  , s, w, i, m, m, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , B, e, d, s, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Bank Transfer"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 2,700"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 2,700"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 1,200"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-008",
+      "scenario": "Skardu City \u2014 TBD pricing",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 2 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=2"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-8763CBAA"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: s, i, g, h, t, s, e, e, i, n, g, ,,  , c, u, l, t, u, r, a, l, _, t, o, u, r, ,,  , p, h, o, t, o, g, r, a, p, h, y"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Credit Card"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 2,200"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 2,200"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 600"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-009",
+      "scenario": "Tormik Meadows \u2014 TBD pricing",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 2 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=2"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-84D6C69E"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: h, i, k, i, n, g, ,,  , p, h, o, t, o, g, r, a, p, h, y, ,,  , c, a, m, p, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , B, e, d, s, ,,  , C, o, o, k, w, a, r, e, ,,  , G, e, n, e, r, a, t, o, r, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Bank Transfer"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 4,500"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 4,500"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 600"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-010",
+      "scenario": "Solo traveller \u2014 Vitz vehicle",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 1 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=1"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-04E15172"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Adequate"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: m, e, d, i, t, a, t, i, o, n, ,,  , h, i, k, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Cash"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 2,200"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 2,200"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 300"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-011",
+      "scenario": "Deosai with Prado down model \u2014 large group",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 10 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=10"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006), V4 - Premio down model (2004-2007), V4 - Premio up model (2008-2013)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-D000160D"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Overbooked"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: t, r, e, k, k, i, n, g, ,,  , w, i, l, d, l, i, f, e, _, s, p, o, t, t, i, n, g, ,,  , p, h, o, t, o, g, r, a, p, h, y, ,,  , c, a, m, p, i, n, g, ,,  , h, i, k, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , B, e, d, s, ,,  , C, o, o, k, w, a, r, e, ,,  , G, e, n, e, r, a, t, o, r, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Bank Transfer"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 4,500"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 4,500"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 3,000"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    },
+    {
+      "id": "DEMO-012",
+      "scenario": "Edge case \u2014 all activity types, all equipment, all payment methods",
+      "checks": [
+        [
+          "clean_form_data",
+          true,
+          "Form data cleaned successfully"
+        ],
+        [
+          "calculate_fields",
+          true,
+          "Fields calculated successfully"
+        ],
+        [
+          "assign_vehicles",
+          true,
+          "Vehicles assigned for 8 guests"
+        ],
+        [
+          "update_sheet_records",
+          true,
+          "Sheet record formatted"
+        ],
+        [
+          "update_dashboard",
+          true,
+          "Dashboard update logged"
+        ],
+        [
+          "guest_count",
+          true,
+          "Guests=8"
+        ],
+        [
+          "vehicle_assignment",
+          true,
+          "Assigned: V4 - Toyota Corolla Sedan (2001-2006), V4 - Premio down model (2004-2007)"
+        ],
+        [
+          "trip_id",
+          true,
+          "Trip ID: TRIP-20260801083607-BE7929D8"
+        ],
+        [
+          "sheet_columns",
+          true,
+          "3 columns (dict)"
+        ],
+        [
+          "capacity_status",
+          true,
+          "Status: Overbooked"
+        ],
+        [
+          "activities",
+          true,
+          "Activities: h, i, k, i, n, g, ,,  , s, i, g, h, t, s, e, e, i, n, g, ,,  , p, h, o, t, o, g, r, a, p, h, y, ,,  , c, a, m, p, i, n, g, ,,  , c, u, l, t, u, r, a, l, _, t, o, u, r, ,,  , f, i, s, h, i, n, g, ,,  , s, t, a, r, g, a, z, i, n, g, ,,  , w, i, l, d, l, i, f, e, _, s, p, o, t, t, i, n, g"
+        ],
+        [
+          "equipment",
+          true,
+          "Equipment: T, e, n, t, s, ,,  , B, e, d, s, ,,  , C, o, o, k, w, a, r, e, ,,  , G, e, n, e, r, a, t, o, r, ,,  , F, i, r, s, t,  , A, i, d,  , K, i, t"
+        ],
+        [
+          "payment_method",
+          true,
+          "Payment: Credit Card"
+        ],
+        [
+          "total_cost",
+          true,
+          "Total cost: PKR 4,500"
+        ],
+        [
+          "deposit_balance",
+          true,
+          "Deposit: PKR 0, Balance: PKR 4,500"
+        ],
+        [
+          "emergency_fund",
+          true,
+          "Emergency fund: PKR 2,400"
+        ]
+      ],
+      "warnings": [
+        "Missing sheet columns: ['timestamp', 'destination', 'trip_name', 'tentative_plan', 'total_guests', 'adults', 'children', 'infants', 'senior_citizens', 'booking_date', 'check_in_date', 'check_out_date', 'accommodation_category', 'hotel_name', 'room_type', 'room_count', 'rooms_needed', 'room_rate', 'meal_plan', 'special_requests', 'vehicle_type', 'vehicle_booked', 'vehicle_assignment', 'seating_capacity', 'vehicles_needed', 'pickup_location', 'dropoff_location', 'driver_name', 'driver_phone', 'activities', 'activities_cost', 'equipment', 'equipment_cost', 'total_trip_cost', 'transport_cost', 'initial_deposit', 'remaining_balance', 'payment_percentage', 'payment_method', 'payment_status', 'trip_status', 'capacity_status', 'emergency_fund', 'approval_status', 'medical_conditions', 'blood_type', 'planner_name', 'contact_phone', 'contact_email', 'emergency_contact', 'emergency_phone']"
+      ]
+    }
+  ]
+}
