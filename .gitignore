@@ -1,6 +1,7 @@
 credentials.json
 config/token.json
 .env
+.env.backup
 *.log
 __pycache__/
 .pytest_cache/
