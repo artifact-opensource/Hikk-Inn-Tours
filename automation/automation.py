@@ -275,17 +275,21 @@ class ToursPlannerAutomation:
 
     def calculate_fields(self, data: Dict[str, Any]) -> Dict[str, Any]:
         calculated = data.copy()
-        calculated["vehicles_needed"] = max(1, (data["total_guests"] + data["seating_capacity"] - 1) // data["seating_capacity"])
-        activities_cost = sum(data[name] * amount for name, amount in (("skardu_sightseeing", 3000), ("hunza_sightseeing", 2500), ("deosai_activities", 5000)))
-        equipment_cost = sum(data[name] * amount for name, amount in (("tents_rent", 2000), ("beds_rent", 500), ("cookware_rent", 300), ("generator_rent", 1500), ("first_aid_kit", 200)))
+        seating = data.get("seating_capacity", 0) or 0
+        total_guests = int(data.get("total_guests", 0) or 0)
+        calculated["vehicles_needed"] = max(1, (total_guests + seating - 1) // seating) if seating > 0 else 1
+        activities_cost = sum(data.get(name, 0) * amount for name, amount in (("skardu_sightseeing", 3000), ("hunza_sightseeing", 2500), ("deosai_activities", 5000)))
+        equipment_cost = sum(data.get(name, 0) * amount for name, amount in (("tents_rent", 2000), ("beds_rent", 500), ("cookware_rent", 300), ("generator_rent", 1500), ("first_aid_kit", 200)))
         calculated["activities_cost"], calculated["equipment_cost"] = activities_cost, equipment_cost
         calculated["total_activities_cost"] = activities_cost + equipment_cost
-        calculated["total_trip_cost"] = data["transport_cost"] + calculated["total_activities_cost"]
-        calculated["remaining_balance"] = max(0, calculated["total_trip_cost"] - data["initial_deposit"])
-        calculated["payment_percentage"] = (data["initial_deposit"] / calculated["total_trip_cost"] * 100) if calculated["total_trip_cost"] else 0
-        calculated["capacity_status"] = "Overbooked" if data["seating_capacity"] < data["total_guests"] else "Adequate"
-        calculated["emergency_fund"] = data["total_guests"] * {"High": 500, "Medium": 300, "Low": 100}.get(data.get("emergency_level", "Medium"), 300)
-        calculated["approval_status"] = "Approved" if data["initial_deposit"] > 0 and data["payment_method"] else "Pending"
+        transport_cost = data.get("transport_cost", 0) or 0
+        calculated["total_trip_cost"] = transport_cost + calculated["total_activities_cost"]
+        initial_deposit = data.get("initial_deposit", 0) or 0
+        calculated["remaining_balance"] = max(0, calculated["total_trip_cost"] - initial_deposit)
+        calculated["payment_percentage"] = (initial_deposit / calculated["total_trip_cost"] * 100) if calculated["total_trip_cost"] else 0
+        calculated["capacity_status"] = "Overbooked" if seating < total_guests else "Adequate"
+        calculated["emergency_fund"] = total_guests * {"High": 500, "Medium": 300, "Low": 100}.get(data.get("emergency_level", "Medium"), 300)
+        calculated["approval_status"] = "Approved" if initial_deposit > 0 and data.get("payment_method") else "Pending"
         return calculated
 
     @staticmethod
