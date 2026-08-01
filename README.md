@@ -41,7 +41,7 @@ Set `available` to `false` when a vehicle is unavailable; new submissions using
 an unavailable vehicle are rejected by the processor.
 
 ### 3. Automated Calculations
-- Trip capacity planning (rooms, vehicles)
+- Trip capacity planning (vehicles, auto-assigned)
 - Cost calculations and budget tracking
 - Emergency fund calculations
 - Payment status tracking
@@ -235,11 +235,15 @@ Common issues and solutions:
 ### Planned Features
 1. Mobile app integration
 2. Advanced analytics and reporting
-3. Weather integration for trip planning
+3. Weather integration per trip date (Open-Meteo API)
 4. Payment gateway integration
 5. Customer portal for travelers
 6. Automated trip reminders
 7. Third-party service integration
+
+### Media Assets
+- `media/vehicles/` - Drop vehicle images here
+- `media/locations/` - Drop location images here
 
 ### Technical Roadmap
 1. Complete Google integration setup

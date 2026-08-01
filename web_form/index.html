@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tour Planning & Expedition Booking</title>
-  <meta name="description" content="Plan and customize your northern tour, vehicle requirements, accommodation, and excursions.">
+  <meta name="description" content="Plan and customize your northern tour, itinerary, activities, and excursions.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
     <header class="app-header">
       <div class="badge">🌲 Expeditions & Tour Planning</div>
       <h1>Customize Your Journey</h1>
-      <p>Configure your itinerary, group preferences, vehicle fleet, accommodation, and excursions in real time.</p>
+      <p>Configure your itinerary, group preferences, itinerary, activities, and excursions in real time.</p>
     </header>
 
     <div class="form-layout">
@@ -122,88 +122,33 @@
             </div>
           </section>
 
-          <!-- STEP 3: Accommodation -->
+          <!-- STEP 3: Weather & Excursions -->
           <section class="form-step" data-step-content="3" id="step3">
-            <h2 class="step-title">3. Accommodation Preferences</h2>
-            <p class="step-desc">Choose your hotel tier, room types, and meal plan.</p>
+            <h2 class="step-title">3. Weather & Excursions</h2>
+            <p class="step-desc">View weather forecast for your trip dates and select activities.</p>
 
-            <div class="input-group">
-              <label for="hotelCategorySelect">Hotel / Stay Category</label>
-              <select id="hotelCategorySelect" name="accommodation_category">
-                <option value="Executive / 3-4 Star" selected>Executive / 3-4 Star Hotel (PKR 12,000 / night)</option>
-                <option value="Luxury 5-Star / Resort">Luxury 5-Star / Resort (PKR 25,000 / night)</option>
-                <option value="Budget / Standard Hotel">Budget / Standard Hotel (PKR 6,000 / night)</option>
-                <option value="Guesthouse / Homestay">Guesthouse / Homestay (PKR 4,500 / night)</option>
-                <option value="Camping / Tents">Camping / Tents (PKR 3,000 / night)</option>
-              </select>
-            </div>
-
-            <div class="input-row">
-              <div class="input-group">
-                <label for="roomTypeSelect">Room Type</label>
-                <select id="roomTypeSelect" name="room_type">
-                  <option value="Double" selected>Double / Twin Bed</option>
-                  <option value="Single">Single Bed</option>
-                  <option value="Triple">Triple Bed</option>
-                  <option value="Suite">Family Suite</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <label for="roomCountInput">Rooms Count</label>
-                <input type="number" id="roomCountInput" name="room_count" value="1" min="1">
-              </div>
+            <div class="weather-panel" id="weatherPanel">
+              <h3>Weather Forecast</h3>
+              <div class="weather-info" id="weatherInfo">Select dates and destination to see weather.</div>
             </div>
 
             <div class="input-group">
-              <label for="mealPlanSelect">Meal Plan</label>
-              <select id="mealPlanSelect" name="meal_plan">
-                <option value="Breakfast Only" selected>Breakfast Only</option>
-                <option value="Half Board (Breakfast & Dinner)">Half Board (Breakfast & Dinner)</option>
-                <option value="Full Board (All Meals)">Full Board (All Meals)</option>
-                <option value="Self Catering / None">Self Catering / None</option>
-              </select>
+              <label for="skarduSightseeing">Skardu Sightseeing (PKR 3,000/person)</label>
+              <input type="number" id="skarduSightseeing" name="skardu_sightseeing" min="0" value="0">
+            </div>
+            <div class="input-group">
+              <label for="hunzaSightseeing">Hunza Sightseeing (PKR 2,500/person)</label>
+              <input type="number" id="hunzaSightseeing" name="hunza_sightseeing" min="0" value="0">
+            </div>
+            <div class="input-group">
+              <label for="deosaiActivities">Deosai Activities (PKR 5,000/person)</label>
+              <input type="number" id="deosaiActivities" name="deosai_activities" min="0" value="0">
             </div>
           </section>
 
-          <!-- STEP 4: Transportation & Fleet -->
+          <!-- STEP 4: Equipment -->
           <section class="form-step" data-step-content="4" id="step4">
-            <h2 class="step-title">4. Transportation & Fleet</h2>
-            <p class="step-desc">Select vehicle models from our available fleet.</p>
-
-            <div class="input-group">
-              <label for="vehicleModelSelect">Select Fleet Vehicle <span class="req">*</span></label>
-              <select id="vehicleModelSelect" name="vehicle_booked" required>
-                <option value="" disabled selected>Choose vehicle model...</option>
-                <optgroup label="V8 4x4 SUVs">
-                  <option value="V8 - Prado TZ/TX up model (2003-2007)">Prado TZ/TX up model (2003-2007) [V8 4x4]</option>
-                  <option value="V8 - Prado TZ/TX down model (1998-2002)">Prado TZ/TX down model (1998-2002) [V8 4x4]</option>
-                  <option value="V8 - Prado Land Cruiser 70 Series 5 Door (1990-1997)">Land Cruiser 70 Series 5 Door [V8 4x4]</option>
-                </optgroup>
-                <optgroup label="V4 Sedans & Compacts">
-                  <option value="V4 - Premio up model (2008-2013)">Premio up model (2008-2013) [V4 Sedan]</option>
-                  <option value="V4 - Premio down model (2004-2007)">Premio down model (2004-2007) [V4 Sedan]</option>
-                  <option value="V4 - Toyota Corolla Sedan (2001-2006)">Toyota Corolla Sedan [V4 Sedan]</option>
-                  <option value="V4 - Toyota Vitz (2001-2013)">Toyota Vitz [V4 Compact]</option>
-                </optgroup>
-                <option value="Flexible / Let planner assign optimal vehicle">Flexible / Auto Assign Fleet</option>
-              </select>
-            </div>
-
-            <div class="input-row">
-              <div class="input-group">
-                <label for="pickupCityInput">Pickup Location <span class="req">*</span></label>
-                <input type="text" id="pickupCityInput" name="pickup_location" placeholder="e.g. Islamabad Airport or Skardu" required>
-              </div>
-              <div class="input-group">
-                <label for="dropoffCityInput">Drop-off Location</label>
-                <input type="text" id="dropoffCityInput" name="dropoff_location" placeholder="e.g. Skardu or Islamabad">
-              </div>
-            </div>
-          </section>
-
-          <!-- STEP 5: Excursions & Equipment -->
-          <section class="form-step" data-step-content="5" id="step5">
-            <h2 class="step-title">5. Excursions & Equipment</h2>
+            <h2 class="step-title">4. Equipment & Add-ons</h2>
             <p class="step-desc">Add exciting activities and rental gear to your package.</p>
 
             <div class="checkbox-grid">
@@ -262,9 +207,9 @@
             </div>
           </section>
 
-          <!-- STEP 6: Traveler Contact & Submission -->
-          <section class="form-step" data-step-content="6" id="step6">
-            <h2 class="step-title">6. Contact & Emergency Information</h2>
+          <!-- STEP 5: Traveler Contact & Submission -->
+          <section class="form-step" data-step-content="5" id="step5">
+            <h2 class="step-title">5. Contact & Emergency Information</h2>
             <p class="step-desc">Enter your contact details to complete your reservation.</p>
 
             <div class="input-group">

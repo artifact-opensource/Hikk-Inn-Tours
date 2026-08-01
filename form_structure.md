@@ -18,24 +18,13 @@
 "ArrivalAirport": "airport_code",
 "FlightNumber": "flight_number",
 
-# Accommodation
-"HotelName": "hotel_name",
-"RoomType": "single/double/triple/suite",
-"RoomCount": "number",
-"RoomRate": "amount_currency",
-"CheckInDate": "YYYY-MM-DD",
-"CheckOutDate": "YYYY-MM-DD",
-"HalfBoardIncluded": "boolean",
-"FullBoardIncluded": "boolean",
-"SpecialRequests": "text",
-
-# Transportation
-"VehicleType": "car/bus/taxi/private_vehicle",
-"VehicleBooked": "vehicle_company/model/number",
+# Transportation (backend-managed)
+"VehicleType": "auto-assigned from fleet catalog",
+"VehicleBooked": "auto-assigned if not specified",
 "SeatingCapacity": "number",
 "DriverName": "driver_name",
 "DriverPhone": "phone_number",
-"TransportCost": "amount_currency",
+"TransportCost": "amount_currency (backend-managed)",
 "PickupLocation": "address",
 "DropoffLocation": "address",
 "FuelCharges": "amount_currency",
@@ -47,6 +36,10 @@
 #     Prado Land Cruiser 70 series, 5 Door (1990-1997)
 # V4: Premio up model (2008-2013); Premio down model (2004-2007);
 #     Toyota Corolla Sedan (2001-2006); Toyota Vitz (2001-2013)
+
+# Weather (per-date, fetched from Open-Meteo API)
+# Weather is fetched automatically for trip dates and destinations.
+# Fields: date, temp_max_c, temp_min_c, precip_mm, wind_kph, conditions
 
 # Excursions & Activities
 "SkarduSightseeing": "boolean",

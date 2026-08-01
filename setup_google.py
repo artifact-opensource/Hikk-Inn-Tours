@@ -85,8 +85,6 @@ def create_form(forms):
     destination_names = [item["name"] for item in DESTINATIONS.get("destinations", [])]
     destination_options = destination_names + ["Other", "Flexible / undecided"]
 
-    vehicle_labels = [item["label"] for item in VEHICLES.get("vehicles", []) if item.get("available")]
-    vehicle_options = vehicle_labels + ["Flexible / Let planner assign optimal vehicle"]
 
     form = forms.forms().create(body={"info": {
         "title": "Comprehensive Trip Planning & Booking Form",
@@ -108,16 +106,17 @@ def create_form(forms):
             text_item("Number of Infants (0-2 years)", False),
             text_item("Number of Senior Citizens (60+ years)", False)
         ]),
-        ("3. Accommodation Preferences", [
-            choice_item("Preferred Accommodation Category", ["Luxury 5-Star / Resort", "Executive / 3-4 Star", "Budget / Standard Hotel", "Guesthouse / Homestay", "Camping / Tents"], "RADIO", True),
-            choice_item("Preferred Room Type", ["Single", "Double", "Triple", "Suite"], "RADIO", True),
-            text_item("Number of Rooms Required", True),
-            choice_item("Meal Plan Preference", ["Breakfast Only", "Half Board (Breakfast & Dinner)", "Full Board (All Meals)", "Self Catering / None"], "RADIO", False),
-            text_item("Special Accommodation Requests or Room Requirements", False, True)
+        ("3. Weather & Activities", [
+            choice_item("Excursions & Sightseeing Activities", [
+                "Skardu Sightseeing", "Hunza Sightseeing", "Deosai Activities",
+                "Camel Safari", "K2 Base Camp Climb", "River Rafting"
+            ], "CHECKBOX", False),
+            choice_item("Equipment Rental Needs", [
+                "Tents", "Beds", "Cookware", "Generator", "First Aid Kit"
+            ], "CHECKBOX", False),
+            text_item("Special Activity Requests", False, True)
         ]),
-        ("4. Transportation & Vehicle Selection", [
-            choice_item("Preferred Vehicle Type / Class", ["V8 4x4 SUV", "V4 Sedan", "V4 Hatchback", "Coaster / Bus", "Self Transport"], "RADIO", True),
-            choice_item("Select Vehicle Model (Available Fleet)", vehicle_options, "RADIO", True),
+        ("4. Transportation", [
             text_item("Pickup City / Departure Location", True),
             text_item("Drop-off City / Arrival Location", False)
         ]),

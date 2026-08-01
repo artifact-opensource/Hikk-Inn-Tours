@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   let currentStep = 1;
-  const totalSteps = 6;
+  const totalSteps = 5;
 
   // DOM Elements
   const stepBadges = document.querySelectorAll(".step-badge");
@@ -152,26 +152,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sumGuests.textContent = `${totalGuests} Guest${totalGuests !== 1 ? 's' : ''}`;
 
-    // Rooms calculation
-    const category = document.getElementById("hotelCategorySelect").value;
-    const roomType = document.getElementById("roomTypeSelect").value;
-    const roomCapacities = { "Single": 1, "Double": 2, "Triple": 3, "Suite": 4 };
-    const roomCap = roomCapacities[roomType] || 2;
+    // Accommodation Cost (backend-managed, not traveler-facing)
+    const totalAccomCost = 0;
+    costAccommodation.textContent = "PKR 0 (backend-managed)";
 
-    const roomsNeeded = Math.max(1, Math.ceil(totalGuests / roomCap));
-    document.getElementById("roomCountInput").value = roomsNeeded;
-    sumRooms.textContent = `${roomsNeeded} Room${roomsNeeded > 1 ? 's' : ''}`;
-
-    // Accommodation Cost
-    const ratePerNight = roomRates[category] || 12000;
-    const totalAccomCost = ratePerNight * roomsNeeded * days;
-    costAccommodation.textContent = `PKR ${totalAccomCost.toLocaleString()}`;
-
-    // Transport & Fleet
+    // Transport Cost (backend-managed, auto-calculated)
     const vehiclesNeeded = Math.max(1, Math.ceil(totalGuests / 6));
     sumVehicles.textContent = `${vehiclesNeeded} Vehicle${vehiclesNeeded > 1 ? 's' : ''}`;
     const baseTransport = 25000 * vehiclesNeeded;
     costTransport.textContent = `PKR ${baseTransport.toLocaleString()}`;
+
+    // Weather fetch for selected dates
+    const destEl = document.getElementById("destinationSelect");
+    const startEl = document.getElementById("startDateInput");
+    const endEl = document.getElementById("endDateInput");
+    const weatherInfo = document.getElementById("weatherInfo");
+    if (destEl && startEl && endEl && weatherInfo) {
+      const dest = destEl.value;
+      const start = startEl.value;
+      const end = endEl.value;
+      if (dest && start && end) {
+        fetch(`/api/weather?dest=${encodeURIComponent(dest)}&start=${start}&end=${end}`)
+          .then(r => r.json())
+          .then(data => {
+            if (data && data.length > 0) {
+              weatherInfo.innerHTML = data.map(w =>
+                `<div class="weather-day"><strong>${w.date}</strong>: ${w.temp_max_c}C / ${w.temp_min_c}C, ${w.precip_mm}mm rain, ${w.wind_kph}kph wind</div>`
+              ).join('');
+            } else {
+              weatherInfo.innerHTML = "Weather data unavailable for this route/date range.";
+            }
+          })
+          .catch(() => {
+            weatherInfo.innerHTML = "Could not fetch weather data.";
+          });
+      } else {
+        weatherInfo.innerHTML = "Select dates and destination to see weather.";
+      }
+    }
 
     // Activities & Equipment
     let actEquipCost = 0;
@@ -190,8 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Event Listeners for Live Calculation
   const calcTriggerFields = [
-    "destinationSelect", "startDateInput", "endDateInput", "hotelCategorySelect",
-    "roomTypeSelect", "roomCountInput", "vehicleModelSelect"
+    "destinationSelect", "startDateInput", "endDateInput",
+    "skarduSightseeing", "hunzaSightseeing", "deosaiActivities"
   ];
 
   calcTriggerFields.forEach(id => {

@@ -200,6 +200,9 @@ class ToursPlannerAutomation:
             "emergency_phone": self.format_phone(form_data.get("emergency_phone")),
             "accommodation_category": str(form_data.get("accommodation_category", form_data.get("accommodation_pref", "Executive / 3-4 Star"))).strip(),
             "hotel_name": str(form_data.get("hotel_name", "")).strip(),
+            "room_type": str(form_data.get("room_type", "Double")).strip().title(),
+            "meal_plan": str(form_data.get("meal_plan", "Breakfast Only")).strip(),
+            "special_requests": str(form_data.get("special_requests", "")).strip(),
             "vehicle_type": str(form_data.get("vehicle_type", "V8 4x4 SUV")).strip(),
             "vehicle_booked": "",
             "pickup_location": str(form_data.get("pickup_location", form_data.get("pickup_city", ""))).strip(),
@@ -209,6 +212,9 @@ class ToursPlannerAutomation:
             "medical_conditions": str(form_data.get("medical_conditions", "")).strip(),
             "blood_type": str(form_data.get("blood_type", "Unknown")).strip()
         })
+
+        cleaned["room_count"] = self.non_negative_int(form_data.get("room_count", 0), "room_count")
+        cleaned["room_rate"] = self.non_negative_float(form_data.get("room_rate", 0), "room_rate")
 
         if "seating_capacity" in form_data:
             cleaned["seating_capacity"] = self.non_negative_int(form_data["seating_capacity"], "seating_capacity")
@@ -222,7 +228,6 @@ class ToursPlannerAutomation:
         cleaned["initial_deposit"] = self.non_negative_float(form_data.get("initial_deposit", 0), "initial_deposit")
         cleaned["transport_cost"] = self.non_negative_float(form_data.get("transport_cost", 0), "transport_cost")
 
-        # Auto-assign vehicle based on party size (backend-managed, not traveler-facing)
         provided_vehicle = str(form_data.get("vehicle_booked", form_data.get("selected_vehicle", ""))).strip()
         if provided_vehicle and "Flexible" not in provided_vehicle:
             labels = self.available_vehicle_labels()
@@ -244,46 +249,22 @@ class ToursPlannerAutomation:
         cleaned.update({"trip_status": "Pending", "payment_status": "Unpaid"})
         return cleaned
 
-    def _assign_vehicle(self, data: Dict[str, Any], vehicles: list) -> dict:
-        """Auto-assign a vehicle based on party size and vehicle availability."""
-        total_guests = data.get("total_guests", 0)
-        for vehicle in vehicles:
-            if vehicle.get("status") == "Available" and vehicle.get("seating_capacity", 0) >= total_guests:
-                return {"vehicle_type": vehicle.get("label", "Unknown"), "vehicle_id": vehicle.get("id"), "seating_capacity": vehicle.get("seating_capacity")}
-        # Fallback to largest available
-        for vehicle in sorted(vehicles, key=lambda v: v.get("seating_capacity", 0), reverse=True):
-            if vehicle.get("status") == "Available":
-                return {"vehicle_type": vehicle.get("label", "Unknown"), "vehicle_id": vehicle.get("id"), "seating_capacity": vehicle.get("seating_capacity")}
-        return {"error": "No available vehicles for party size"}
-
-    def _fetch_weather(self, data: Dict[str, Any]) -> dict:
-        """Fetch weather details for trip dates and destinations."""
-        try:
-            dest = data.get("destination", "")
-            dest_info = next((d for d in self._destinations() if d.get("name") == dest), None)
-            if not dest_info or not dest_info.get("latitude") or not dest_info.get("longitude"):
-                return {}
-            from weather import get_weather_for_dates
-            dates = [data.get("departure_date", ""), data.get("return_date", "")]
-            dates = [d for d in dates if d]
-            if not dates:
-                return {}
-            records = get_weather_for_dates(dest_info["latitude"], dest_info["longitude"], dates)
-            return [{"date": r["date"], "temp_max_c": r["temp_max_c"], "temp_min_c": r["temp_min_c"], "precip_mm": r["precip_mm"], "wind_kph": r["wind_kph"], "conditions": r["weather_code"]} for r in records]
-        except Exception:
-            return {}
-
     def calculate_fields(self, data: Dict[str, Any]) -> Dict[str, Any]:
         calculated = data.copy()
+        room_capacity = {"Single": 1, "Double": 2, "Triple": 3, "Suite": 4}.get(data["room_type"], 2)
+        calculated["rooms_needed"] = max(1, (data["total_guests"] + room_capacity - 1) // room_capacity)
+        if not data.get("room_count"):
+            calculated["room_count"] = calculated["rooms_needed"]
+
         calculated["vehicles_needed"] = max(1, (data["total_guests"] + data["seating_capacity"] - 1) // data["seating_capacity"])
         activities_cost = sum(data[name] * amount for name, amount in (("skardu_sightseeing", 3000), ("hunza_sightseeing", 2500), ("deosai_activities", 5000)))
         equipment_cost = sum(data[name] * amount for name, amount in (("tents_rent", 2000), ("beds_rent", 500), ("cookware_rent", 300), ("generator_rent", 1500), ("first_aid_kit", 200)))
         calculated["activities_cost"], calculated["equipment_cost"] = activities_cost, equipment_cost
         calculated["total_activities_cost"] = activities_cost + equipment_cost
-        calculated["total_trip_cost"] = data["transport_cost"] + calculated["total_activities_cost"]
+        calculated["total_trip_cost"] = (data["room_rate"] * calculated["room_count"]) + data["transport_cost"] + calculated["total_activities_cost"]
         calculated["remaining_balance"] = max(0, calculated["total_trip_cost"] - data["initial_deposit"])
         calculated["payment_percentage"] = (data["initial_deposit"] / calculated["total_trip_cost"] * 100) if calculated["total_trip_cost"] else 0
-        calculated["capacity_status"] = "Overbooked" if data["seating_capacity"] < data["total_guests"] else "Adequate"
+        calculated["capacity_status"] = "Overbooked" if calculated["room_count"] < calculated["rooms_needed"] else "Adequate"
         calculated["emergency_fund"] = data["total_guests"] * {"High": 500, "Medium": 300, "Low": 100}.get(data.get("emergency_level", "Medium"), 300)
         calculated["approval_status"] = "Approved" if data["initial_deposit"] > 0 and data["payment_method"] else "Pending"
         return calculated

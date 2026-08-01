@@ -435,7 +435,7 @@ schedule.every().last_day_of_month.at("23:59").do(monthly_backup)
 def update_calculations():
     # Update all formulas in real-time
     update_trip_totals()
-    update_vehicle_requirements()
+    # update_vehicle_requirements()  # Now auto-assigned
     update_budget_allocations()
     update_payment_status()
     update_emergency_requirements()

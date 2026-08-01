@@ -70,34 +70,10 @@
       "description": "Number of seats available"
     },
     {
-      "name": "hotel_name",
-      "type": "string",
-      "required": true,
-      "description": "Name of accommodation"
-    },
-    {
-      "name": "room_type",
-      "type": "string",
-      "required": true,
-      "description": "Type of room (Single, Double, Triple, Suite)"
-    },
-    {
-      "name": "room_count",
-      "type": "integer",
-      "required": true,
-      "description": "Number of rooms"
-    },
-    {
-      "name": "room_rate",
-      "type": "decimal",
-      "required": true,
-      "description": "Rate per room"
-    },
-    {
       "name": "transport_cost",
       "type": "decimal",
       "required": true,
-      "description": "Total transportation cost"
+      "description": "Total transportation cost (backend-managed)"
     },
     {
       "name": "total_trip_cost",

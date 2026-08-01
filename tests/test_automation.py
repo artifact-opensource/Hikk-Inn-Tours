@@ -14,8 +14,7 @@ class AutomationTests(unittest.TestCase):
             "location": "Skardu", "trip_name": "Summer-Trip", "adults": 4,
             "children": 2, "infants": 0, "senior_citizens": 0,
             "booking_date": "2026-08-01", "check_in_date": "2026-08-10",
-            "check_out_date": "2026-08-13", "room_type": "Double", "room_count": 3,
-            "room_rate": 10000, "seating_capacity": 6, "vehicle_type": "Car",
+            "check_out_date": "2026-08-13", "seating_capacity": 6, "vehicle_type": "Car",
             "transport_cost": 25000, "initial_deposit": 10000,
             "payment_method": "Bank transfer", "contact_phone": "+92 300 1234567",
             "emergency_phone": "+92 300 7654321", "driver_phone": "+92 300 1111111",
@@ -26,9 +25,8 @@ class AutomationTests(unittest.TestCase):
         result = self.automation.process_form_submission(self.data)
         self.assertEqual(result["status"], "success")
         self.assertEqual(result["data"]["total_guests"], 6)
-        self.assertEqual(result["data"]["rooms_needed"], 3)
         self.assertEqual(result["data"]["vehicles_needed"], 1)
-        self.assertEqual(result["data"]["total_trip_cost"], 58200)
+        self.assertEqual(result["data"]["total_trip_cost"], 28200)
 
     def test_dates_are_validated(self):
         invalid = dict(self.data, check_out_date="2026-08-09")
