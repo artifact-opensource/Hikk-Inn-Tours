@@ -167,10 +167,10 @@ body {
 }
 
 .form-layout {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 2rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
 }
 
 .form-card {
@@ -527,11 +527,11 @@ select option, select optgroup {
   color: #f87171;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 768px) {
   .form-layout {
-    grid-template-columns: 1fr;
-  }
-  .summary-card {
-    position: static;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    align-items: start;
   }
 }

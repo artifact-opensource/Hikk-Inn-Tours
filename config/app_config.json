@@ -1,16 +1,16 @@
 {
-  "project_name": "Tours Planning",
+  "project_name": "Vanguard Tours",
   "timezone": "Asia/Karachi",
   "currency": "PKR",
   "vehicle_catalog_file": "config/vehicles.json",
   "sheets": {
     "Trip_Database": {
       "headers": [
-        "trip_id", "timestamp", "destination", "trip_name", "tentative_plan",
+        "trip_id", "timestamp", "destination", "trip_name", "trip_style", "travel_priority", "tentative_plan",
         "total_guests", "adults", "children", "infants", "senior_citizens",
         "booking_date", "check_in_date", "check_out_date",
-        "accommodation_category", "hotel_name", "room_type", "room_count", "rooms_needed", "room_rate", "meal_plan", "special_requests",
-        "vehicle_type", "vehicle_booked", "vehicle_assignment", "seating_capacity", "vehicles_needed", "pickup_location", "dropoff_location", "driver_name", "driver_phone",
+        "accommodation_category", "hotel_name", "room_type", "room_count", "rooms_needed", "room_rate", "meal_plan", "special_requests", "accessibility_notes",
+        "vehicle_type", "vehicle_booked", "vehicle_assignment", "seating_capacity", "vehicles_needed", "pickup_location", "dropoff_location", "driver_name", "driver_phone", "transport_notes",
         "activities", "activities_cost", "equipment", "equipment_cost", "total_trip_cost", "transport_cost", "initial_deposit", "remaining_balance", "payment_percentage",
         "payment_method", "payment_status", "trip_status", "capacity_status", "emergency_fund", "approval_status",
         "medical_conditions", "blood_type", "planner_name", "contact_phone", "contact_email", "emergency_contact", "emergency_phone"

@@ -17,6 +17,11 @@ logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
 
+def resolve_env_path(env_value: str, default_relative: str) -> Path:
+    candidate = Path(env_value or default_relative)
+    return candidate if candidate.is_absolute() else ROOT / candidate
+
+
 def authenticate():
     from google.auth.transport.requests import Request
     from google.oauth2.credentials import Credentials
@@ -26,15 +31,15 @@ def authenticate():
         "https://www.googleapis.com/auth/drive",
         "https://www.googleapis.com/auth/spreadsheets",
     ]
-    token_file = Path(os.getenv("GOOGLE_TOKEN_FILE", ROOT / "config" / "token.json"))
-    credentials_file = Path(os.getenv("GOOGLE_CREDENTIALS_FILE", ROOT / "credentials.json"))
+    token_file = resolve_env_path(os.getenv("GOOGLE_TOKEN_FILE", "config/token.json"), "config/token.json")
+    credentials_file = resolve_env_path(os.getenv("GOOGLE_CREDENTIALS_FILE", "config/credentials.json"), "config/credentials.json")
     creds = Credentials.from_authorized_user_file(token_file, SCOPES) if token_file.exists() else None
     if creds and creds.expired and creds.refresh_token:
         creds.refresh(Request())
     if not creds or not creds.valid:
         if not credentials_file.exists():
-            raise FileNotFoundError("Download an OAuth desktop client to credentials.json first")
-        creds = InstalledAppFlow.from_client_secrets_file(credentials_file, SCOPES).run_local_server(port=0)
+            raise FileNotFoundError("Download an OAuth desktop client to config/credentials.json first")
+        creds = InstalledAppFlow.from_client_secrets_file(str(credentials_file), SCOPES).run_local_server(port=0)
         token_file.write_text(creds.to_json(), encoding="utf-8")
     return creds
 

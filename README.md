@@ -173,7 +173,7 @@ with the core traveler questions.
 3. Install dependencies with `pip install -r requirements.txt`.
 4. Run `python setup_google.py --dry-run` and then `python setup_google.py`.
 5. Copy the printed Form ID and Spreadsheet ID into [link_form_responses.gs](link_form_responses.gs), run `linkFormResponses` once at script.google.com, and authorize it.
-6. Share the resulting Form URL with travelers and restrict spreadsheet access to staff.
+6. Share the resulting Form URL with travelers and keep the spreadsheet restricted to staff; the provisioning script now adds public read permission to the newly created Form and Sheet so the client links open without a permission error.
 
 The setup is repeatable only for new resources: it creates a new spreadsheet and
 form on each non-dry run. Keep the printed IDs in a secure deployment record.

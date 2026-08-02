@@ -61,6 +61,17 @@ class AutomationTests(unittest.TestCase):
         result = self.automation.process_form_submission(dict(self.data, vehicle_booked="Unknown vehicle"))
         self.assertEqual(result["status"], "error")
 
+    def test_richer_booking_fields_are_preserved(self):
+        payload = dict(self.data, trip_style="Adventure Expedition", travel_priority="Luxury comfort", accommodation_category="Luxury 5-Star / Resort", room_count=2, meal_plan="Full board", special_requests="Quiet room", accessibility_notes="No stairs", transport_notes="Airport pickup at 10am", vehicle_type="V8 4x4 SUV")
+        cleaned = self.automation.clean_form_data(payload)
+        self.assertEqual(cleaned["trip_style"], "Adventure Expedition")
+        self.assertEqual(cleaned["travel_priority"], "Luxury comfort")
+        self.assertEqual(cleaned["room_count"], 2)
+        self.assertEqual(cleaned["meal_plan"], "Full board")
+        self.assertEqual(cleaned["special_requests"], "Quiet room")
+        self.assertEqual(cleaned["accessibility_notes"], "No stairs")
+        self.assertEqual(cleaned["transport_notes"], "Airport pickup at 10am")
+
 
 if __name__ == "__main__":
     unittest.main()

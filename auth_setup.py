@@ -21,10 +21,27 @@ import os
 import sys
 from pathlib import Path
 
+from automation.automation import load_environment
+
 ROOT = Path(__file__).resolve().parent
+load_environment(ROOT)
 CONFIG_DIR = ROOT / "config"
-CREDENTIALS_FILE = CONFIG_DIR / "credentials.json"
-TOKEN_FILE = CONFIG_DIR / "token.json"
+
+
+def resolve_env_path(env_name: str, default_relative: str) -> Path:
+    candidate = Path(os.getenv(env_name, default_relative))
+    return candidate if candidate.is_absolute() else ROOT / candidate
+
+
+CREDENTIALS_FILE = resolve_env_path("GOOGLE_CREDENTIALS_FILE", "config/credentials.json")
+TOKEN_FILE = resolve_env_path("GOOGLE_TOKEN_FILE", "config/token.json")
+DEFAULT_SCOPES = [
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/forms.body",
+    "https://www.googleapis.com/auth/forms.responses.readonly",
+]
+SCOPES = [scope.strip() for scope in os.getenv("GOOGLE_SCOPES", ",".join(DEFAULT_SCOPES)).split(",") if scope.strip()]
 
 
 def ensure_config_dir():
@@ -146,11 +163,6 @@ def run_playwright_browser_auth():
     from google_auth_oauthlib.flow import Flow
 
     CLIENT_SECRETS = str(CREDENTIALS_FILE)
-    SCOPES = [
-        "https://www.googleapis.com/auth/spreadsheets",
-        "https://www.googleapis.com/auth/forms.body",
-        "https://www.googleapis.com/auth/drive.file",
-    ]
 
     flow = Flow.from_client_secrets_file(
         CLIENT_SECRETS,

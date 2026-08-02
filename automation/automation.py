@@ -27,6 +27,11 @@ def load_environment(root: Optional[Path] = None) -> None:
             value = value.strip().strip('"').strip("'")
             os.environ.setdefault(key, value)
 
+    if not os.environ.get("TOURS_SPREADSHEET_ID") and os.environ.get("GOOGLE_SPREADSHEET_ID"):
+        os.environ.setdefault("TOURS_SPREADSHEET_ID", os.environ["GOOGLE_SPREADSHEET_ID"])
+    if not os.environ.get("TOURS_FORM_ID") and os.environ.get("GOOGLE_FORM_ID"):
+        os.environ.setdefault("TOURS_FORM_ID", os.environ["GOOGLE_FORM_ID"])
+
 
 load_environment()
 LOG_PATH = BASE_PATH / "logs" / "automation.log"
@@ -207,16 +212,14 @@ class ToursPlannerAutomation:
             "driver_name": str(form_data.get("driver_name", "")).strip(),
             "payment_method": str(form_data.get("payment_method", "Bank Transfer")).strip().title(),
             "medical_conditions": str(form_data.get("medical_conditions", "")).strip(),
-            "blood_type": str(form_data.get("blood_type", "Unknown")).strip()
+            "blood_type": str(form_data.get("blood_type", "Unknown")).strip(),
+            "trip_style": str(form_data.get("trip_style", "")).strip(),
+            "travel_priority": str(form_data.get("travel_priority", "")).strip(),
+            "meal_plan": str(form_data.get("meal_plan", "")).strip(),
+            "special_requests": str(form_data.get("special_requests", "")).strip(),
+            "accessibility_notes": str(form_data.get("accessibility_notes", "")).strip(),
+            "transport_notes": str(form_data.get("transport_notes", "")).strip(),
         })
-
-        if "seating_capacity" in form_data:
-            cleaned["seating_capacity"] = self.non_negative_int(form_data["seating_capacity"], "seating_capacity")
-        else:
-            cleaned["seating_capacity"] = 7
-
-        if cleaned["seating_capacity"] <= 0:
-            raise ValueError("seating_capacity must be greater than zero")
 
         cleaned["driver_phone"] = self.format_phone(form_data.get("driver_phone"))
         cleaned["initial_deposit"] = self.non_negative_float(form_data.get("initial_deposit", 0), "initial_deposit")
@@ -275,7 +278,9 @@ class ToursPlannerAutomation:
 
     def calculate_fields(self, data: Dict[str, Any]) -> Dict[str, Any]:
         calculated = data.copy()
-        seating = data.get("seating_capacity", 0) or 0
+        vehicle_type = data.get("vehicle_type", "Sedan")
+        vehicle_info = self.get_vehicle_info(vehicle_type)
+        seating = vehicle_info.get("seating_capacity", 7) if vehicle_info else 7
         total_guests = int(data.get("total_guests", 0) or 0)
         calculated["vehicles_needed"] = max(1, (total_guests + seating - 1) // seating) if seating > 0 else 1
         activities_cost = sum(data.get(name, 0) * amount for name, amount in (("skardu_sightseeing", 3000), ("hunza_sightseeing", 2500), ("deosai_activities", 5000)))

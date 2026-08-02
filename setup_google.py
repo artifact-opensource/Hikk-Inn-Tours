@@ -16,12 +16,20 @@ load_environment(ROOT)
 CONFIG = ROOT / "config" / "app_config.json"
 VEHICLES = json.loads((ROOT / "config" / "vehicles.json").read_text(encoding="utf-8"))
 DESTINATIONS = json.loads((ROOT / "config" / "destinations.json").read_text(encoding="utf-8"))
-SCOPES = [
+DEFAULT_SCOPES = [
     "https://www.googleapis.com/auth/drive",
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/forms.body",
     "https://www.googleapis.com/auth/forms.responses.readonly",
 ]
+
+
+def resolve_env_path(env_value: str, default_relative: str) -> Path:
+    candidate = Path(env_value or default_relative)
+    return candidate if candidate.is_absolute() else ROOT / candidate
+
+
+SCOPES = [scope.strip() for scope in os.getenv("GOOGLE_SCOPES", ",".join(DEFAULT_SCOPES)).split(",") if scope.strip()]
 
 
 def load_config():
@@ -32,22 +40,22 @@ def authenticate():
     from google.auth.transport.requests import Request
     from google.oauth2.credentials import Credentials
     from google_auth_oauthlib.flow import InstalledAppFlow
-    token_file = Path(os.getenv("GOOGLE_TOKEN_FILE", ROOT / "config" / "token.json"))
-    credentials_file = Path(os.getenv("GOOGLE_CREDENTIALS_FILE", ROOT / "credentials.json"))
+    token_file = resolve_env_path(os.getenv("GOOGLE_TOKEN_FILE", "config/token.json"), "config/token.json")
+    credentials_file = resolve_env_path(os.getenv("GOOGLE_CREDENTIALS_FILE", "config/credentials.json"), "config/credentials.json")
     creds = Credentials.from_authorized_user_file(token_file, SCOPES) if token_file.exists() else None
     if creds and creds.expired and creds.refresh_token:
         creds.refresh(Request())
     if not creds or not creds.valid:
         if not credentials_file.exists():
-            raise FileNotFoundError("Download an OAuth client to credentials.json first")
-        flow = InstalledAppFlow.from_client_secrets_file(credentials_file, SCOPES)
+            raise FileNotFoundError("Download an OAuth client to config/credentials.json first")
+        flow = InstalledAppFlow.from_client_secrets_file(str(credentials_file), SCOPES)
         creds = flow.run_local_server(port=0)
         token_file.write_text(creds.to_json(), encoding="utf-8")
     return creds
 
 
 def create_spreadsheet(sheets, config):
-    body = {"properties": {"title": "Tours Planning Master"}}
+    body = {"properties": {"title": "Vanguard Tours Master"}}
     spreadsheet = sheets.spreadsheets().create(body=body, fields="spreadsheetId,spreadsheetUrl,sheets.properties").execute()
     spreadsheet_id = spreadsheet["spreadsheetId"]
     requests = []
@@ -81,68 +89,77 @@ def date_item(title, required=True):
     return {"title": title, "questionItem": {"question": {"required": required, "dateQuestion": {"includeYear": True}}}}
 
 
+def share_with_anyone(drive, file_id, role="reader"):
+    try:
+        drive.permissions().create(
+            fileId=file_id,
+            body={"role": role, "type": "anyone"},
+            fields="id"
+        ).execute()
+    except Exception:
+        pass
+
+
 def create_form(forms):
     destination_names = [item["name"] for item in DESTINATIONS.get("destinations", [])]
     destination_options = destination_names + ["Other", "Flexible / undecided"]
 
-
     form = forms.forms().create(body={"info": {
-        "title": "Comprehensive Trip Planning & Booking Form",
-        "description": "Please provide your trip details, preferences, vehicle requirements, and contact details so our team can customize your complete itinerary."
+        "title": "Vanguard Tours Expedition Booking Form",
+        "description": "Share your destination, group profile, stay preferences, activities, transport needs, and lead traveler details so Vanguard Tours can shape a complete premium itinerary."
     }}).execute()
 
     requests = []
     sections = [
-        ("1. Trip Destination & Schedule", [
+        ("1. Expedition Overview", [
             choice_item("Which destination are you most interested in?", destination_options, "RADIO", True),
+            choice_item("Trip Style", ["Family Escape", "Couples Retreat", "Adventure Expedition", "Photography Journey", "Corporate Retreat", "Mixed Group Tour"], "RADIO", False),
             text_item("Trip Name / Custom Title (optional)", False),
             date_item("Tentative Travel Start Date", True),
             date_item("Tentative Travel End Date", True),
-            text_item("Tentative Itinerary / Specific Places You Wish to Visit", False, True)
+            text_item("Tentative Itinerary / Places of Interest", False, True)
         ]),
-        ("2. Group Demographics", [
+        ("2. Group Profile & Comfort", [
             text_item("Number of Adults (18+ years)", True),
             text_item("Number of Children (2-17 years)", False),
             text_item("Number of Infants (0-2 years)", False),
-            text_item("Number of Senior Citizens (60+ years)", False)
+            text_item("Number of Senior Citizens (60+ years)", False),
+            choice_item("Comfort Priority", ["Luxury comfort", "Balanced premium", "Adventurous / light"], "RADIO", False),
+            text_item("Accessibility or Mobility Notes (optional)", False, True)
         ]),
-        ("3. Weather & Activities", [
-            choice_item("Excursions & Sightseeing Activities", [
+        ("3. Stay Experience", [
+            choice_item("Accommodation Style", ["Luxury 5-Star / Resort", "Executive / 3-4 Star", "Budget / Standard Hotel", "Guesthouse / Homestay", "Camping / Tents"], "RADIO", False),
+            text_item("Rooms Needed", False),
+            choice_item("Meal Plan Preference", ["Breakfast only", "Half board", "Full board", "Custom itinerary meals"], "RADIO", False),
+            text_item("Special Stay Requests", False, True)
+        ]),
+        ("4. Activities & Equipment", [
+            choice_item("Adventure Add-ons", [
                 "Skardu Sightseeing", "Hunza Sightseeing", "Deosai Activities",
-                "Camel Safari", "K2 Base Camp Climb", "River Rafting"
+                "River Rafting", "Camel Safari", "Photography Session"
             ], "CHECKBOX", False),
             choice_item("Equipment Rental Needs", [
                 "Tents", "Beds", "Cookware", "Generator", "First Aid Kit"
             ], "CHECKBOX", False),
-            text_item("Special Activity Requests", False, True)
+            text_item("Any special activities or gear you want to add?", False, True)
         ]),
-        ("4. Transportation", [
+        ("5. Transport & Logistics", [
             text_item("Pickup City / Departure Location", True),
-            text_item("Drop-off City / Arrival Location", False)
+            text_item("Drop-off City / Arrival Location", False),
+            choice_item("Preferred Vehicle Class", ["V4 4x4 Sedan", "V8 4x4 SUV", "Premium SUV", "Shared Van"], "RADIO", False),
+            text_item("Driver / Escort Preference", False),
+            text_item("Transport Notes (airport pickup, luggage, road comfort, etc.)", False, True)
         ]),
-        ("5. Excursions & Equipment Rentals", [
-            choice_item("Excursions & Sightseeing Activities", [
-                "Skardu Sightseeing", "Hunza Sightseeing", "Deosai Activities",
-                "Camel Safari", "K2 Base Camp Climb", "River Rafting"
-            ], "CHECKBOX", False),
-            choice_item("Equipment Rental Needs", [
-                "Tents", "Beds", "Cookware", "Generator", "First Aid Kit"
-            ], "CHECKBOX", False)
-        ]),
-        ("6. Traveler Contact & Emergency Info", [
+        ("6. Lead Traveler & Payment", [
             text_item("Lead Traveler Full Name", True),
             text_item("Contact Phone (include country code, e.g. +92 300 1234567)", True),
             text_item("Contact Email Address", True),
             text_item("Emergency Contact Full Name", True),
             text_item("Emergency Contact Phone Number", True),
             text_item("Medical Conditions, Allergies, or Dietary Requirements", False, True),
-            choice_item("Blood Type", ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-", "Unknown"], "RADIO", False)
-        ]),
-        ("7. Financial & Payment Details", [
-            text_item("Estimated Transport Budget (PKR, optional)", False),
-            text_item("Initial Deposit Amount (PKR, optional)", False),
+            choice_item("Blood Type", ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-", "Unknown"], "RADIO", False),
             choice_item("Preferred Payment Method", ["Cash", "Card", "Bank Transfer", "Online"], "RADIO", False),
-            text_item("Special Requests, Notes, or Accessibility Needs", False, True)
+            text_item("Initial Deposit Amount (PKR, optional)", False)
         ])
     ]
 
@@ -168,13 +185,17 @@ def main():
     creds = authenticate()
     sheets = build("sheets", "v4", credentials=creds)
     forms = build("forms", "v1", credentials=creds)
+    drive = build("drive", "v3", credentials=creds)
     spreadsheet = create_spreadsheet(sheets, config)
     form = create_form(forms)
+    share_with_anyone(drive, spreadsheet["spreadsheetId"], role="reader")
+    share_with_anyone(drive, form["formId"], role="reader")
     print(f"Spreadsheet URL: {spreadsheet['spreadsheetUrl']}")
     print(f"Form ID: {form['formId']}")
     if form.get("responderUri"):
         print(f"Form URL: {form['responderUri']}")
     print("Next: run link_form_responses.gs once in script.google.com to link Form responses to the spreadsheet.")
+    print("Sharing is enabled for the generated Google resources so the public links can be opened without permission errors.")
 
 
 if __name__ == "__main__":

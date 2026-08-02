@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   let currentStep = 1;
-  const totalSteps = 5;
+  const totalSteps = 6;
 
   // DOM Elements
   const stepBadges = document.querySelectorAll(".step-badge");
@@ -15,12 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const sumDestination = document.getElementById("sumDestination");
   const sumDuration = document.getElementById("sumDuration");
   const sumGuests = document.getElementById("sumGuests");
-  const sumRooms = document.getElementById("sumRooms");
   const sumVehicles = document.getElementById("sumVehicles");
   const costAccommodation = document.getElementById("costAccommodation");
   const costTransport = document.getElementById("costTransport");
   const costActivities = document.getElementById("costActivities");
   const costTotal = document.getElementById("costTotal");
+
+  const selectedTripStyle = document.getElementById("tripStyleSelect");
+  const selectedStayStyle = document.getElementById("stayStyleSelect");
+  const selectedVehiclePreference = document.getElementById("vehiclePreferenceSelect");
 
   // Pricing constants (in PKR)
   const roomRates = {
@@ -152,17 +155,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sumGuests.textContent = `${totalGuests} Guest${totalGuests !== 1 ? 's' : ''}`;
 
-    // Accommodation Cost (backend-managed, not traveler-facing)
-    const totalAccomCost = 0;
-    costAccommodation.textContent = "PKR 0 (backend-managed)";
+    const stayStyle = selectedStayStyle?.value || "Executive / 3-4 Star";
+    const accomRate = roomRates[stayStyle] || 12000;
+    const totalAccomCost = totalGuests * accomRate;
+    costAccommodation.textContent = `PKR ${totalAccomCost.toLocaleString()}`;
 
-    // Transport Cost (backend-managed, auto-calculated)
     const vehiclesNeeded = Math.max(1, Math.ceil(totalGuests / 6));
     sumVehicles.textContent = `${vehiclesNeeded} Vehicle${vehiclesNeeded > 1 ? 's' : ''}`;
     const baseTransport = 25000 * vehiclesNeeded;
     costTransport.textContent = `PKR ${baseTransport.toLocaleString()}`;
 
-    // Weather fetch for selected dates
     const destEl = document.getElementById("destinationSelect");
     const startEl = document.getElementById("startDateInput");
     const endEl = document.getElementById("endDateInput");
@@ -191,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Activities & Equipment
     let actEquipCost = 0;
     document.querySelectorAll("input[name='activities']:checked").forEach(cb => {
       actEquipCost += activityPrices[cb.value] || 0;
@@ -201,7 +202,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     costActivities.textContent = `PKR ${actEquipCost.toLocaleString()}`;
 
-    // Total Estimate
+    const tripStyle = selectedTripStyle?.value || "";
+    const vehiclePreference = selectedVehiclePreference?.value || "";
+    const styleLabel = tripStyle ? ` • ${tripStyle}` : "";
+    const vehicleLabel = vehiclePreference ? ` • ${vehiclePreference}` : "";
+    sumDestination.textContent = `${dest || "Not selected"}${styleLabel}${vehicleLabel}`;
+
     const grandTotal = totalAccomCost + baseTransport + actEquipCost;
     costTotal.textContent = `PKR ${grandTotal.toLocaleString()}`;
   }
@@ -209,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event Listeners for Live Calculation
   const calcTriggerFields = [
     "destinationSelect", "startDateInput", "endDateInput",
+    "tripStyleSelect", "stayStyleSelect", "vehiclePreferenceSelect",
     "skarduSightseeing", "hunzaSightseeing", "deosaiActivities"
   ];
 

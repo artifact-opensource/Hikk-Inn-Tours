@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tour Planning & Expedition Booking</title>
-  <meta name="description" content="Plan and customize your northern tour, itinerary, activities, and excursions.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#0a0e1a">
+  <title>Vanguard Tours | Expedition Booking</title>
+  <meta name="description" content="Plan your premium northern expedition with Vanguard Tours — curated destinations, weather intelligence, transport planning, and activity-ready itineraries.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,15 +20,9 @@
 
   <main class="app-container">
     <header class="app-header">
-      <div class="logo-placeholder">
-        <div class="logo-box">
-          <span class="logo-icon">🏨</span>
-          <span class="logo-text">LOGO</span>
-        </div>
-      </div>
-      <div class="badge">🌲 Hikk Inn Travel & Tours</div>
-      <h1>Hikk Inn Travel & Tours</h1>
-      <p>Your premier travel companion — vehicles, destinations, weather, and activities, all in one place.</p>
+      <div class="badge">🛡️ Vanguard Tours</div>
+      <h1>Vanguard Tours</h1>
+      <p>Premium expedition planning for mountain escapes, cultural journeys, and adventure-ready itineraries across the north.</p>
     </header>
 
     <div class="form-layout">
@@ -37,16 +32,15 @@
           <div class="step-badge active" data-step="1"><span>1</span> Destination</div>
           <div class="step-badge" data-step="2"><span>2</span> Group</div>
           <div class="step-badge" data-step="3"><span>3</span> Stay</div>
-          <div class="step-badge" data-step="4"><span>4</span> Fleet</div>
-          <div class="step-badge" data-step="5"><span>5</span> Activities</div>
+          <div class="step-badge" data-step="4"><span>4</span> Activities</div>
+          <div class="step-badge" data-step="5"><span>5</span> Logistics</div>
           <div class="step-badge" data-step="6"><span>6</span> Contact</div>
         </nav>
 
         <form id="tourBookingForm" novalidate>
-          <!-- STEP 1: Destination & Schedule -->
           <section class="form-step active" data-step-content="1" id="step1">
-            <h2 class="step-title">1. Destination & Schedule</h2>
-            <p class="step-desc">Where and when would you like to travel?</p>
+            <h2 class="step-title">1. Destination & Expedition Style</h2>
+            <p class="step-desc">Choose the route, dates, and travel mood for your Vanguard Tours itinerary.</p>
 
             <div class="input-group">
               <label for="destinationSelect">Primary Destination <span class="req">*</span></label>
@@ -63,8 +57,21 @@
             </div>
 
             <div class="input-group">
+              <label for="tripStyleSelect">Trip Style</label>
+              <select id="tripStyleSelect" name="trip_style">
+                <option value="" selected>Choose trip style...</option>
+                <option value="Family Escape">Family Escape</option>
+                <option value="Couples Retreat">Couples Retreat</option>
+                <option value="Adventure Expedition">Adventure Expedition</option>
+                <option value="Photography Journey">Photography Journey</option>
+                <option value="Corporate Retreat">Corporate Retreat</option>
+                <option value="Mixed Group Tour">Mixed Group Tour</option>
+              </select>
+            </div>
+
+            <div class="input-group">
               <label for="tripNameInput">Trip Title / Reference (optional)</label>
-              <input type="text" id="tripNameInput" name="trip_name" placeholder="e.g. Summer Family Expedition 2026">
+              <input type="text" id="tripNameInput" name="trip_name" placeholder="e.g. Vanguard Summer Expedition 2026">
             </div>
 
             <div class="input-row">
@@ -80,14 +87,13 @@
 
             <div class="input-group">
               <label for="itineraryText">Tentative Itinerary / Places of Interest</label>
-              <textarea id="itineraryText" name="tentative_plan" rows="3" placeholder="List key spots or special desires..."></textarea>
+              <textarea id="itineraryText" name="tentative_plan" rows="4" placeholder="Share your must-see stops, scenic highlights, or custom route preferences..."></textarea>
             </div>
           </section>
 
-          <!-- STEP 2: Group Demographics -->
           <section class="form-step" data-step-content="2" id="step2">
-            <h2 class="step-title">2. Group Demographics</h2>
-            <p class="step-desc">Specify traveler counts for room and vehicle calculations.</p>
+            <h2 class="step-title">2. Group Profile & Comfort</h2>
+            <p class="step-desc">Capture the traveler mix and the comfort level the itinerary should support.</p>
 
             <div class="grid-counters">
               <div class="counter-card">
@@ -126,61 +132,93 @@
                 </div>
               </div>
             </div>
+
+            <div class="input-row" style="margin-top: 1rem;">
+              <div class="input-group">
+                <label for="travelPrioritySelect">Comfort Priority</label>
+                <select id="travelPrioritySelect" name="travel_priority">
+                  <option value="" selected>Choose priority...</option>
+                  <option value="Luxury comfort">Luxury comfort</option>
+                  <option value="Balanced premium">Balanced premium</option>
+                  <option value="Adventurous / light">Adventurous / light</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="mobilityText">Accessibility / Mobility Notes (optional)</label>
+                <input type="text" id="mobilityText" name="accessibility_notes" placeholder="Wheelchair access, dietary needs, mtn-friendly pacing...">
+              </div>
+            </div>
           </section>
 
-          <!-- STEP 3: Weather & Excursions -->
           <section class="form-step" data-step-content="3" id="step3">
-            <h2 class="step-title">3. Weather & Excursions</h2>
-            <p class="step-desc">View weather forecast for your trip dates and select activities.</p>
+            <h2 class="step-title">3. Stay Experience</h2>
+            <p class="step-desc">Set the accommodation style, meal plan, and premium touches desired.</p>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label for="stayStyleSelect">Accommodation Style</label>
+                <select id="stayStyleSelect" name="accommodation_category">
+                  <option value="Executive / 3-4 Star" selected>Executive / 3-4 Star</option>
+                  <option value="Luxury 5-Star / Resort">Luxury 5-Star / Resort</option>
+                  <option value="Budget / Standard Hotel">Budget / Standard Hotel</option>
+                  <option value="Guesthouse / Homestay">Guesthouse / Homestay</option>
+                  <option value="Camping / Tents">Camping / Tents</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label for="mealPlanSelect">Meal Plan Preference</label>
+                <select id="mealPlanSelect" name="meal_plan">
+                  <option value="" selected>Choose meal plan...</option>
+                  <option value="Breakfast only">Breakfast only</option>
+                  <option value="Half board">Half board</option>
+                  <option value="Full board">Full board</option>
+                  <option value="Custom itinerary meals">Custom itinerary meals</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="villaNeedsText">Special Stay Requests</label>
+                <input type="text" id="villaNeedsText" name="special_requests" placeholder="Rooming preferences, quiet rooms, early check-in...">
+              </div>
+            </div>
 
             <div class="weather-panel" id="weatherPanel">
-              <h3>Weather Forecast</h3>
+              <h3>Destination Weather Insight</h3>
               <div class="weather-info" id="weatherInfo">Select dates and destination to see weather.</div>
-            </div>
-
-            <div class="input-group">
-              <label for="skarduSightseeing">Skardu Sightseeing (PKR 3,000/person)</label>
-              <input type="number" id="skarduSightseeing" name="skardu_sightseeing" min="0" value="0">
-            </div>
-            <div class="input-group">
-              <label for="hunzaSightseeing">Hunza Sightseeing (PKR 2,500/person)</label>
-              <input type="number" id="hunzaSightseeing" name="hunza_sightseeing" min="0" value="0">
-            </div>
-            <div class="input-group">
-              <label for="deosaiActivities">Deosai Activities (PKR 5,000/person)</label>
-              <input type="number" id="deosaiActivities" name="deosai_activities" min="0" value="0">
             </div>
           </section>
 
-          <!-- STEP 4: Equipment -->
           <section class="form-step" data-step-content="4" id="step4">
-            <h2 class="step-title">4. Equipment & Add-ons</h2>
-            <p class="step-desc">Add exciting activities and rental gear to your package.</p>
+            <h2 class="step-title">4. Activities & Gear</h2>
+            <p class="step-desc">Blend activity intensity, equipment rental needs, and special experiences into the plan.</p>
 
             <div class="checkbox-grid">
-              <h3>Activities & Sightseeing</h3>
+              <h3>Adventure Add-ons</h3>
               <label class="check-card">
                 <input type="checkbox" name="activities" value="Skardu Sightseeing">
-                <div class="check-info">
-                  <strong>Skardu Sightseeing</strong>
-                  <span>Shangrila, Lower/Upper Kachura + PKR 3,000</span>
-                </div>
+                <div class="check-info"><strong>Skardu Sightseeing</strong><span>Shangrila, Lower/Upper Kachura</span></div>
               </label>
-
               <label class="check-card">
                 <input type="checkbox" name="activities" value="Hunza Sightseeing">
-                <div class="check-info">
-                  <strong>Hunza Sightseeing</strong>
-                  <span>Altit & Baltit Forts + PKR 2,500</span>
-                </div>
+                <div class="check-info"><strong>Hunza Sightseeing</strong><span>Altit & Baltit Forts + lake views</span></div>
               </label>
-
               <label class="check-card">
                 <input type="checkbox" name="activities" value="Deosai Activities">
-                <div class="check-info">
-                  <strong>Deosai National Park Tour</strong>
-                  <span>Sheosar Lake Safari + PKR 5,000</span>
-                </div>
+                <div class="check-info"><strong>Deosai Adventure</strong><span>Sheosar Lake, plateau drive</span></div>
+              </label>
+              <label class="check-card">
+                <input type="checkbox" name="activities" value="River Rafting">
+                <div class="check-info"><strong>River Rafting</strong><span>High-adrenaline water route</span></div>
+              </label>
+              <label class="check-card">
+                <input type="checkbox" name="activities" value="Camel Safari">
+                <div class="check-info"><strong>Camel Safari</strong><span>Desert-inspired leisure stop</span></div>
+              </label>
+              <label class="check-card">
+                <input type="checkbox" name="activities" value="Photography Session">
+                <div class="check-info"><strong>Photography Session</strong><span>Golden hour and landmark coverage</span></div>
               </label>
             </div>
 
@@ -188,35 +226,68 @@
               <h3>Equipment Rentals</h3>
               <label class="check-card">
                 <input type="checkbox" name="equipment" value="Tents">
-                <div class="check-info"><strong>Camping Tents</strong> <span>+ PKR 2,000</span></div>
+                <div class="check-info"><strong>Camping Tents</strong><span>+ PKR 2,000</span></div>
               </label>
-
               <label class="check-card">
                 <input type="checkbox" name="equipment" value="Beds">
-                <div class="check-info"><strong>Sleeping Beds / Bags</strong> <span>+ PKR 500</span></div>
+                <div class="check-info"><strong>Sleeping Beds / Bags</strong><span>+ PKR 500</span></div>
               </label>
-
               <label class="check-card">
                 <input type="checkbox" name="equipment" value="Cookware">
-                <div class="check-info"><strong>Cookware & Stove Set</strong> <span>+ PKR 300</span></div>
+                <div class="check-info"><strong>Cookware & Stove Set</strong><span>+ PKR 300</span></div>
               </label>
-
               <label class="check-card">
                 <input type="checkbox" name="equipment" value="Generator">
-                <div class="check-info"><strong>Portable Generator</strong> <span>+ PKR 1,500</span></div>
+                <div class="check-info"><strong>Portable Generator</strong><span>+ PKR 1,500</span></div>
               </label>
-
               <label class="check-card">
                 <input type="checkbox" name="equipment" value="First Aid Kit">
-                <div class="check-info"><strong>First Aid & Oxygen Kit</strong> <span>+ PKR 200</span></div>
+                <div class="check-info"><strong>First Aid & Oxygen Kit</strong><span>+ PKR 200</span></div>
               </label>
             </div>
           </section>
 
-          <!-- STEP 5: Traveler Contact & Submission -->
           <section class="form-step" data-step-content="5" id="step5">
-            <h2 class="step-title">5. Contact & Emergency Information</h2>
-            <p class="step-desc">Enter your contact details to complete your reservation.</p>
+            <h2 class="step-title">5. Transport & Logistics</h2>
+            <p class="step-desc">Plan your airport, pickup, and vehicle requirement details before final confirmation.</p>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label for="pickupLocationInput">Pickup City / Departure Location <span class="req">*</span></label>
+                <input type="text" id="pickupLocationInput" name="pickup_location" placeholder="Islamabad, Lahore, Karachi..." required>
+              </div>
+              <div class="input-group">
+                <label for="dropoffLocationInput">Drop-off City / Arrival Location</label>
+                <input type="text" id="dropoffLocationInput" name="dropoff_location" placeholder="Return city or final stop">
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label for="vehiclePreferenceSelect">Preferred Vehicle Class</label>
+                <select id="vehiclePreferenceSelect" name="vehicle_type">
+                  <option value="" selected>Choose preferred vehicle...</option>
+                  <option value="V4 4x4 Sedan">V4 4x4 Sedan</option>
+                  <option value="V8 4x4 SUV">V8 4x4 SUV</option>
+                  <option value="Premium SUV">Premium SUV</option>
+                  <option value="Shared Van">Shared Van</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="driverPreferenceInput">Driver / Escort Preference</label>
+                <input type="text" id="driverPreferenceInput" name="driver_name" placeholder="Preferred driver or escort details">
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="transportNotesText">Transport Notes</label>
+              <textarea id="transportNotesText" name="transport_notes" rows="3" placeholder="Airport pickup time, luggage volume, chain-of-command needs, road comfort preferences..."></textarea>
+            </div>
+          </section>
+
+          <section class="form-step" data-step-content="6" id="step6">
+            <h2 class="step-title">6. Lead Traveler & Payment</h2>
+            <p class="step-desc">Share the main contact information, emergency link, and payment preference.</p>
 
             <div class="input-group">
               <label for="leadNameInput">Lead Traveler Full Name <span class="req">*</span></label>
@@ -260,6 +331,11 @@
                 </select>
               </div>
             </div>
+
+            <div class="input-group">
+              <label for="depositInput">Initial Deposit Amount (optional)</label>
+              <input type="text" id="depositInput" name="initial_deposit" placeholder="e.g. PKR 25,000">
+            </div>
           </section>
 
           <!-- Form Navigation Controls -->
@@ -295,10 +371,6 @@
         <hr class="divider">
 
         <div class="summary-section">
-          <div class="summary-row">
-            <span>Rooms Needed:</span>
-            <strong id="sumRooms">1 Room</strong>
-          </div>
           <div class="summary-row">
             <span>Est. Vehicles Needed:</span>
             <strong id="sumVehicles">1 Vehicle</strong>
