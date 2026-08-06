@@ -228,7 +228,19 @@ class ToursPlannerAutomation:
             "accessibility_notes": str(form_data.get("accessibility_notes", "")).strip(),
             "transport_notes": str(form_data.get("transport_notes", "")).strip(),
             "package_option": str(form_data.get("package_option", form_data.get("tour_package", "Skardu Select"))).strip(),
+            "room_count": self.non_negative_int(form_data.get("room_count", 0), "room_count") if form_data.get("room_count", "") != "" else 0,
+            "rooms_needed": self.non_negative_int(form_data.get("rooms_needed", 0), "rooms_needed") if form_data.get("rooms_needed", "") != "" else 0,
+            "room_rate": self.non_negative_float(form_data.get("room_rate", 0), "room_rate") if form_data.get("room_rate", "") != "" else 0.0,
         })
+
+        vehicle_info = self.get_vehicle_info(cleaned.get("vehicle_type", ""))
+        if "seating_capacity" in form_data and form_data.get("seating_capacity", "") != "":
+            seating_capacity = self.non_negative_int(form_data.get("seating_capacity"), "seating_capacity")
+            if seating_capacity == 0:
+                raise ValueError("seating_capacity must be greater than zero")
+            cleaned["seating_capacity"] = seating_capacity
+        else:
+            cleaned["seating_capacity"] = vehicle_info.get("seating_capacity", 7)
 
         cleaned["driver_phone"] = self.format_phone(form_data.get("driver_phone"))
         cleaned["initial_deposit"] = self.non_negative_float(form_data.get("initial_deposit", 0), "initial_deposit")

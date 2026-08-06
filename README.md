@@ -169,11 +169,12 @@ Google spreadsheet with the normalized tabs and headers, and one Google Form
 with the core traveler questions.
 
 1. Enable **Google Sheets API**, **Google Forms API**, and **Google Drive API** in a Google Cloud project.
-2. Create an OAuth **Desktop app** client, download it as `credentials.json` in the repository root, and do not commit it.
-3. Install dependencies with `pip install -r requirements.txt`.
-4. Run `python setup_google.py --dry-run` and then `python setup_google.py`.
-5. Copy the printed Form ID and Spreadsheet ID into [link_form_responses.gs](link_form_responses.gs), run `linkFormResponses` once at script.google.com, and authorize it.
-6. Share the resulting Form URL with travelers and keep the spreadsheet restricted to staff; the provisioning script now adds public read permission to the newly created Form and Sheet so the client links open without a permission error.
+2. Create a dedicated service account in the same project and download the JSON key as `config/service_account_key.json`.
+3. Grant the service account at least `Editor` permissions on the project, or more specific roles for Sheets/Drive/Forms.
+4. Install dependencies with `pip install -r requirements.txt`.
+5. Run `python setup_google.py --dry-run` and then `python setup_google.py`.
+6. Copy the printed Form ID and Spreadsheet ID into [link_form_responses.gs](link_form_responses.gs), run `linkFormResponses` once at script.google.com, and authorize it.
+7. Share the resulting Form URL with travelers and keep the spreadsheet restricted to staff; the provisioning script now adds public read permission to the newly created Form and Sheet so the client links open without a permission error.
 
 The setup is repeatable only for new resources: it creates a new spreadsheet and
 form on each non-dry run. Keep the printed IDs in a secure deployment record.
@@ -245,6 +246,15 @@ Common issues and solutions:
 - `media/vehicles/` - Drop vehicle images here
 - `media/locations/` - Drop location images here
 
+### Client Deployment 
+Deployment note
+For clean client deployment:
+
+keep service_account_key.json private
+make sure the service account has appropriate IAM access in tours-planning-009111
+set GOOGLE_SERVICE_ACCOUNT_FILE=config/service_account_key.json in the client environment
+optionally add kazmi886@gmail.com as a GCP project Owner for handoff
+
 ### Technical Roadmap
 1. Complete Google integration setup
 2. Add user feedback and improvement features
@@ -260,8 +270,8 @@ Common issues and solutions:
 - Documentation: Check project README and docs/
 
 ### Emergency Contact
-- 24/7 Support: +92-300-1234567
-- Technical Support: +92-300-9876543
+- 24/7 Support: +92-347-5440639
+- Technical Support: +92-341-9492919
 
 ### Community
 Join the tours-planning community on GitHub for discussions, feature requests, and support.

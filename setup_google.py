@@ -30,6 +30,7 @@ def resolve_env_path(env_value: str, default_relative: str) -> Path:
 
 
 SCOPES = [scope.strip() for scope in os.getenv("GOOGLE_SCOPES", ",".join(DEFAULT_SCOPES)).split(",") if scope.strip()]
+SERVICE_ACCOUNT_FILE = resolve_env_path(os.getenv("GOOGLE_SERVICE_ACCOUNT_FILE", "config/service_account_key.json"), "config/service_account_key.json")
 
 
 def load_config():
@@ -37,21 +38,9 @@ def load_config():
 
 
 def authenticate():
-    from google.auth.transport.requests import Request
-    from google.oauth2.credentials import Credentials
-    from google_auth_oauthlib.flow import InstalledAppFlow
-    token_file = resolve_env_path(os.getenv("GOOGLE_TOKEN_FILE", "config/token.json"), "config/token.json")
-    credentials_file = resolve_env_path(os.getenv("GOOGLE_CREDENTIALS_FILE", "config/credentials.json"), "config/credentials.json")
-    creds = Credentials.from_authorized_user_file(token_file, SCOPES) if token_file.exists() else None
-    if creds and creds.expired and creds.refresh_token:
-        creds.refresh(Request())
-    if not creds or not creds.valid:
-        if not credentials_file.exists():
-            raise FileNotFoundError("Download an OAuth client to config/credentials.json first")
-        flow = InstalledAppFlow.from_client_secrets_file(str(credentials_file), SCOPES)
-        creds = flow.run_local_server(port=0)
-        token_file.write_text(creds.to_json(), encoding="utf-8")
-    return creds
+    from automation.google_auth import get_google_credentials
+
+    return get_google_credentials(scopes=SCOPES)
 
 
 def create_spreadsheet(sheets, config):
