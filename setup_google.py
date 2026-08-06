@@ -112,6 +112,7 @@ def create_form(forms):
     requests = []
     sections = [
         ("1. Expedition Overview", [
+            choice_item("Select your preferred package", ["Skardu Select", "Skardu Essential", "Skardu Signature", "Skardu Elite"], "RADIO", True),
             choice_item("Which destination are you most interested in?", destination_options, "RADIO", True),
             choice_item("Trip Style", ["Family Escape", "Couples Retreat", "Adventure Expedition", "Photography Journey", "Corporate Retreat", "Mixed Group Tour"], "RADIO", False),
             text_item("Trip Name / Custom Title (optional)", False),

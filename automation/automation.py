@@ -94,10 +94,18 @@ class ToursPlannerAutomation:
         except (OSError, json.JSONDecodeError, KeyError, TypeError):
             return []
 
+    def _destinations(self) -> list:
+        return self._destinations_catalog()
+
     def get_destination_config(self, name: str) -> Optional[dict]:
         if not name:
             return None
-        candidates = [d for d in self._destinations_catalog() if d.get("name", "").lower() == str(name).strip().lower() or d.get("id", "").lower() == str(name).strip().lower()]
+        normalized = str(name).strip().lower()
+        candidates = [
+            d for d in self._destinations_catalog()
+            if d.get("name", "").strip().lower() == normalized
+            or d.get("id", "").strip().lower() == normalized
+        ]
         return candidates[0] if candidates else None
 
     def assign_fleet_for_group(self, destination_name: str, guest_count: int) -> list:
@@ -219,6 +227,7 @@ class ToursPlannerAutomation:
             "special_requests": str(form_data.get("special_requests", "")).strip(),
             "accessibility_notes": str(form_data.get("accessibility_notes", "")).strip(),
             "transport_notes": str(form_data.get("transport_notes", "")).strip(),
+            "package_option": str(form_data.get("package_option", form_data.get("tour_package", "Skardu Select"))).strip(),
         })
 
         cleaned["driver_phone"] = self.format_phone(form_data.get("driver_phone"))
@@ -235,6 +244,8 @@ class ToursPlannerAutomation:
             cleaned["vehicle_booked"] = provided_vehicle
         else:
             cleaned["vehicle_assignment"] = self.assign_vehicles(cleaned["total_guests"])
+
+        cleaned["package_option"] = cleaned.get("package_option", "Skardu Select")
 
         activities, equipment = self.as_list(form_data.get("activities")), self.as_list(form_data.get("equipment"))
         for name, label in (("skardu_sightseeing", "Skardu Sightseeing"), ("hunza_sightseeing", "Hunza Sightseeing"), ("deosai_activities", "Deosai Activities")):
@@ -258,6 +269,16 @@ class ToursPlannerAutomation:
             if vehicle.get("status") == "Available":
                 return {"vehicle_type": vehicle.get("label", "Unknown"), "vehicle_id": vehicle.get("id"), "seating_capacity": vehicle.get("seating_capacity")}
         return {"error": "No available vehicles for party size"}
+
+    def get_vehicle_info(self, vehicle_type: str) -> dict:
+        """Return vehicle catalog info for a selected vehicle type."""
+        normalized = str(vehicle_type or "").strip().lower()
+        for vehicle in self._vehicle_catalog():
+            if vehicle.get("label", "").strip().lower() == normalized:
+                return vehicle
+            if vehicle.get("id", "").strip().lower() == normalized:
+                return vehicle
+        return {"seating_capacity": 7}
 
     def _fetch_weather(self, data: Dict[str, Any]) -> dict:
         """Fetch weather details for trip dates and destinations."""

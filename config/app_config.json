@@ -6,7 +6,7 @@
   "sheets": {
     "Trip_Database": {
       "headers": [
-        "trip_id", "timestamp", "destination", "trip_name", "trip_style", "travel_priority", "tentative_plan",
+        "trip_id", "timestamp", "destination", "trip_name", "trip_style", "travel_priority", "package_option", "tentative_plan",
         "total_guests", "adults", "children", "infants", "senior_citizens",
         "booking_date", "check_in_date", "check_out_date",
         "accommodation_category", "hotel_name", "room_type", "room_count", "rooms_needed", "room_rate", "meal_plan", "special_requests", "accessibility_notes",

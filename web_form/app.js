@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Summary Elements
   const sumDestination = document.getElementById("sumDestination");
+  const sumPackage = document.getElementById("sumPackage");
   const sumDuration = document.getElementById("sumDuration");
   const sumGuests = document.getElementById("sumGuests");
   const sumVehicles = document.getElementById("sumVehicles");
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const costActivities = document.getElementById("costActivities");
   const costTotal = document.getElementById("costTotal");
 
+  const selectedPackage = document.getElementById("packageSelect");
   const selectedTripStyle = document.getElementById("tripStyleSelect");
   const selectedStayStyle = document.getElementById("stayStyleSelect");
   const selectedVehiclePreference = document.getElementById("vehiclePreferenceSelect");
@@ -155,6 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sumGuests.textContent = `${totalGuests} Guest${totalGuests !== 1 ? 's' : ''}`;
 
+    const packageOption = selectedPackage?.value || "Skardu Select";
+    sumPackage.textContent = packageOption;
+
     const stayStyle = selectedStayStyle?.value || "Executive / 3-4 Star";
     const accomRate = roomRates[stayStyle] || 12000;
     const totalAccomCost = totalGuests * accomRate;
@@ -204,9 +209,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tripStyle = selectedTripStyle?.value || "";
     const vehiclePreference = selectedVehiclePreference?.value || "";
+    const packageLabel = packageOption ? ` • ${packageOption}` : "";
     const styleLabel = tripStyle ? ` • ${tripStyle}` : "";
     const vehicleLabel = vehiclePreference ? ` • ${vehiclePreference}` : "";
-    sumDestination.textContent = `${dest || "Not selected"}${styleLabel}${vehicleLabel}`;
+    sumDestination.textContent = `${dest || "Not selected"}${packageLabel}${styleLabel}${vehicleLabel}`;
 
     const grandTotal = totalAccomCost + baseTransport + actEquipCost;
     costTotal.textContent = `PKR ${grandTotal.toLocaleString()}`;
@@ -214,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Event Listeners for Live Calculation
   const calcTriggerFields = [
-    "destinationSelect", "startDateInput", "endDateInput",
+    "destinationSelect", "packageSelect", "startDateInput", "endDateInput",
     "tripStyleSelect", "stayStyleSelect", "vehiclePreferenceSelect",
     "skarduSightseeing", "hunzaSightseeing", "deosaiActivities"
   ];
@@ -231,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Form Submission
-  bookingForm.addEventListener("submit", (e) => {
+  bookingForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!validateStep(totalSteps)) return;
 
@@ -249,17 +255,38 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSubmit.disabled = true;
     btnSubmit.textContent = "Processing...";
 
-    setTimeout(() => {
-      btnSubmit.disabled = false;
-      btnSubmit.textContent = "Submit Tour Reservation";
+    try {
+      const response = await fetch("/api/form-response", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataObj),
+      });
+      const result = await response.json();
+
+      if (!response.ok || result.status === "error") {
+        throw new Error(result.error || "Unable to submit reservation.");
+      }
+
       submissionMessage.className = "submission-banner success";
       submissionMessage.style.display = "block";
       submissionMessage.innerHTML = `
-        ✅ <strong>Tour Reservation Configured Successfully!</strong><br>
+        ✅ <strong>Tour Reservation Submitted!</strong><br>
+        Package: <strong>${dataObj.package_option || "Skardu Select"}</strong><br>
         Destination: <strong>${dataObj.destination}</strong> | Duration: <strong>${sumDuration.textContent}</strong><br>
-        Your itinerary has been submitted to the automation system.
+        Your trip details were sent successfully and will be processed in the booking system.
       `;
-    }, 800);
+      bookingForm.reset();
+      calculateEstimates();
+      currentStep = 1;
+      updateStepUI();
+    } catch (error) {
+      submissionMessage.className = "submission-banner error";
+      submissionMessage.style.display = "block";
+      submissionMessage.textContent = `⚠️ Submission failed: ${error.message}`;
+    } finally {
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = "Submit Tour Reservation";
+    }
   });
 
   // Initial Calculation

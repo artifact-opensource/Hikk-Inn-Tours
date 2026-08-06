@@ -43,9 +43,19 @@
             <p class="step-desc">Choose the route, dates, and travel mood for your Vanguard Tours itinerary.</p>
 
             <div class="input-group">
+              <label for="packageSelect">Choose a Package <span class="req">*</span></label>
+              <select id="packageSelect" name="package_option" required>
+                <option value="Skardu Select" selected>Skardu Select (customizable)</option>
+                <option value="Skardu Essential">Skardu Essential</option>
+                <option value="Skardu Signature">Skardu Signature</option>
+                <option value="Skardu Elite">Skardu Elite</option>
+              </select>
+            </div>
+
+            <div class="input-group">
               <label for="destinationSelect">Primary Destination <span class="req">*</span></label>
               <select id="destinationSelect" name="destination" required>
-                <option value="" disabled selected>Select destination...</option>
+                <option value="" disabled>Select destination...</option>
                 <option value="Skardu">Skardu Valley & Shangrila</option>
                 <option value="Hunza">Hunza Valley & Attabad Lake</option>
                 <option value="Shigar">Shigar Valley & Fort</option>
@@ -357,6 +367,10 @@
           <div class="summary-row">
             <span>Destination:</span>
             <strong id="sumDestination">Not selected</strong>
+          </div>
+          <div class="summary-row">
+            <span>Package:</span>
+            <strong id="sumPackage">Skardu Select</strong>
           </div>
           <div class="summary-row">
             <span>Duration:</span>
